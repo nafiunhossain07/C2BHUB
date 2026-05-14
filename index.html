@@ -8,19 +8,14 @@
 <style>
 :root {
   --black: #f0f6ff;
-  --black2: #e0ecff;
-  --black3: #cce0ff;
   --card: #ffffff;
   --white: #0a1a3a;
   --white2: #1a3060;
   --silver: #4a6090;
   --accent: #1565c0;
   --accent2: #1e88e5;
-  --red: #c62828;
   --border: rgba(21,101,192,0.18);
-  --border2: rgba(21,101,192,0.38);
   --nav-bg: rgba(255,255,255,0.92);
-  --hero-bg: #e8f1ff;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -28,9 +23,8 @@ body {
   background: var(--black);
   color: var(--white);
   font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
   overflow-x: hidden;
-  cursor: none;
+  cursor: none; /* Custom Cursor implementation */
 }
 
 /* CURSOR SYSTEM */
@@ -39,7 +33,7 @@ body {
   background: var(--accent); border-radius: 50%;
   pointer-events: none; z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s, width 0.2s, height 0.2s;
+  transition: transform 0.1s;
   mix-blend-mode: multiply;
 }
 .cursor-ring {
@@ -47,7 +41,6 @@ body {
   border: 1.5px solid var(--accent); border-radius: 50%;
   pointer-events: none; z-index: 99998;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
   opacity: 0.5;
 }
 
@@ -57,13 +50,12 @@ nav {
   padding: 0 5%; display: flex; align-items: center;
   justify-content: space-between; height: 70px;
   background: var(--nav-bg); backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border); transition: height 0.3s;
+  border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 20px rgba(21,101,192,0.08);
 }
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif; font-size: 28px;
   letter-spacing: 4px; color: var(--accent); text-decoration: none;
-  display: flex; align-items: center; gap: 8px;
 }
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
@@ -75,10 +67,9 @@ nav {
 /* HERO SECTION */
 .hero {
   min-height: 80vh; display: flex; align-items: center;
-  position: relative; overflow: hidden; padding: 100px 5% 0;
+  position: relative; padding: 100px 5% 0;
   background: linear-gradient(135deg, #e8f1ff 0%, #dceeff 100%);
 }
-.hero-content { position: relative; z-index: 2; }
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(60px, 10vw, 120px); line-height: 0.9;
@@ -89,7 +80,7 @@ nav {
 section { padding: 80px 5%; }
 .section-title {
   font-family: 'Bebas Neue', sans-serif; font-size: 50px;
-  letter-spacing: 1px; margin-bottom: 40px; color: var(--white);
+  margin-bottom: 40px; color: var(--white);
 }
 .section-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 
@@ -101,15 +92,14 @@ section { padding: 80px 5%; }
 
 .product-card {
   background: var(--card); border: 1px solid var(--border);
-  position: relative; overflow: hidden; cursor: none;
-  transition: all 0.3s ease;
+  position: relative; overflow: hidden; transition: all 0.3s ease;
 }
 .product-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(21,101,192,0.1); }
 
 .product-img-wrap {
   height: 300px; background: #f8faff;
   display: flex; align-items: center; justify-content: center;
-  overflow: hidden; position: relative;
+  overflow: hidden;
 }
 .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 .product-card:hover img { transform: scale(1.08); }
@@ -127,7 +117,7 @@ section { padding: 80px 5%; }
 }
 .lightbox-overlay.active { opacity: 1; pointer-events: all; }
 .lightbox-inner { max-width: 800px; width: 90%; text-align: center; color: white; }
-.lightbox-img { max-height: 60vh; width: 100%; object-fit: contain; margin-bottom: 20px; }
+.lightbox-img { max-height: 60vh; width: 100%; object-fit: contain; margin-bottom: 20px; border-radius: 8px; }
 
 .btn-order {
   background: var(--accent); color: white; padding: 15px 40px;
@@ -135,7 +125,7 @@ section { padding: 80px 5%; }
   display: inline-block; margin-top: 20px; text-transform: uppercase; letter-spacing: 2px;
 }
 
-/* UTILITY */
+/* ANIMATIONS */
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.6s all ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -153,9 +143,9 @@ section { padding: 80px 5%; }
 <nav>
   <a href="#" class="nav-logo">C2B HUB</a>
   <ul class="nav-links">
-    <li><a href="#sneakers">Sneakers</a></li>
-    <li><a href="#campus">Campus</a></li>
-    <li><a href="#bags">Bags & Accessories</a></li>
+    <li><a href="#products">Sneakers</a></li>
+    <li><a href="#products">Campus</a></li>
+    <li><a href="#products">Bags & Accessories</a></li>
   </ul>
   <div style="font-size: 12px; font-weight: bold; background: var(--accent); color: white; padding: 5px 12px; border-radius: 20px;">ORDERS: +86 19851957535</div>
 </nav>
@@ -184,46 +174,47 @@ section { padding: 80px 5%; }
 
 <script>
 const products = [
-  { brand: "Nike", name: "AF1 Supreme White", img: "image_1.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Supreme Black", img: "image_2.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Supreme Wheat", img: "image_3.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Blue/White Contrast", img: "image_4.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Classic White", img: "image_5.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Contrast Black/White", img: "image_6.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Classic Black", img: "image_7.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Grey Suede", img: "image_8.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Green Contrast", img: "image_9.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Panda Edition", img: "image_10.jpg", cat: "sneakers" },
-  { brand: "Nike", name: "AF1 Red Contrast", img: "image_11.jpg", cat: "sneakers" },
-  { brand: "Adidas", name: "Campus Forest Green", img: "image_12.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Carbon Grey", img: "image_13.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Baby Pink", img: "image_14.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Dark Brown", img: "image_15.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Cream Suede", img: "image_16.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Navy Blue", img: "image_17.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Deep Red", img: "image_18.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Core Black", img: "image_19.jpg", cat: "campus" },
-  { brand: "Adidas", name: "Campus Classic Grey", img: "image_20.jpg", cat: "campus" },
-  { brand: "Couture", name: "Purple Orchid 3D Heel", img: "image_21.jpg", cat: "heels" },
-  { brand: "Couture", name: "Green Orchid 3D Heel", img: "image_22.jpg", cat: "heels" },
-  { brand: "Y2K Archive", name: "Star Buckle Denim Bag", img: "image_23.jpg", cat: "bags" },
-  { brand: "Utility", name: "Multi-Pocket Tech Bag", img: "image_24.jpg", cat: "bags" },
-  { brand: "Y2K Archive", name: "White Star Buckle Bag", img: "image_25.jpg", cat: "bags" },
-  { brand: "Coquette", name: "Red Glossy Cherry Bag", img: "image_26.jpg", cat: "bags" },
-  { brand: "Y2K Archive", name: "Black Star Chain Bag", img: "image_27.jpg", cat: "bags" },
-  { brand: "Coquette", name: "Black Hello Kitty Bow Bag", img: "image_28.jpg", cat: "bags" },
-  { brand: "Coquette", name: "Red Pearl Bow Handbag", img: "image_29.jpg", cat: "bags" }
+  { brand: "Nike", name: "AF1 Supreme White", img: "image_1.jpg" },
+  { brand: "Nike", name: "AF1 Supreme Black", img: "image_2.jpg" },
+  { brand: "Nike", name: "AF1 Supreme Wheat", img: "image_3.jpg" },
+  { brand: "Nike", name: "AF1 Blue/White Contrast", img: "image_4.jpg" },
+  { brand: "Nike", name: "AF1 Classic White", img: "image_5.jpg" },
+  { brand: "Nike", name: "AF1 Contrast Black/White", img: "image_6.jpg" },
+  { brand: "Nike", name: "AF1 Classic Black", img: "image_7.jpg" },
+  { brand: "Nike", name: "AF1 Grey Suede", img: "image_8.jpg" },
+  { brand: "Nike", name: "AF1 Green Contrast", img: "image_9.jpg" },
+  { brand: "Nike", name: "AF1 Panda Edition", img: "image_10.jpg" },
+  { brand: "Nike", name: "AF1 Red Contrast", img: "image_11.jpg" },
+  { brand: "Adidas", name: "Campus Forest Green", img: "image_12.jpg" },
+  { brand: "Adidas", name: "Campus Carbon Grey", img: "image_13.jpg" },
+  { brand: "Adidas", name: "Campus Baby Pink", img: "image_14.jpg" },
+  { brand: "Adidas", name: "Campus Dark Brown", img: "image_15.jpg" },
+  { brand: "Adidas", name: "Campus Cream Suede", img: "image_16.jpg" },
+  { brand: "Adidas", name: "Campus Navy Blue", img: "image_17.jpg" },
+  { brand: "Adidas", name: "Campus Deep Red", img: "image_18.jpg" },
+  { brand: "Adidas", name: "Campus Core Black", img: "image_19.jpg" },
+  { brand: "Adidas", name: "Campus Classic Grey", img: "image_20.jpg" },
+  { brand: "Couture", name: "Purple Orchid 3D Heel", img: "image_21.jpg" },
+  { brand: "Couture", name: "Green Orchid 3D Heel", img: "image_22.jpg" },
+  { brand: "Y2K Archive", name: "Star Buckle Denim Bag", img: "image_23.jpg" },
+  { brand: "Utility", name: "Multi-Pocket Tech Bag", img: "image_24.jpg" },
+  { brand: "Y2K Archive", name: "White Star Buckle Bag", img: "image_25.jpg" },
+  { brand: "Coquette", name: "Red Glossy Cherry Bag", img: "image_26.jpg" },
+  { brand: "Y2K Archive", name: "Black Star Chain Bag", img: "image_27.jpg" },
+  { brand: "Coquette", name: "Black Hello Kitty Bow Bag", img: "image_28.jpg" },
+  { brand: "Coquette", name: "Red Pearl Bow Handbag", img: "image_29.jpg" }
 ];
 
 const grid = document.getElementById('mainGrid');
 
-products.forEach((p, i) => {
+// Dynamic Render
+products.forEach((p) => {
   const card = document.createElement('div');
   card.className = 'product-card reveal';
   card.onclick = () => openLightbox(p);
   card.innerHTML = `
     <div class="product-img-wrap">
-      <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x400?text=Image+Missing'">
+      <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x400?text=Image+JPG+Needed'">
     </div>
     <div class="product-info">
       <div class="product-brand">${p.brand}</div>
@@ -244,7 +235,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
 }
 
-// Cursor Logic
+// Cursor Follow
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -259,15 +250,14 @@ function animateRing() {
 }
 animateRing();
 
-// Intersection Observer for animations
+// Scroll Reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Close on ESC
+// Keyboard ESC
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 </script>
-
 </body>
 </html>
