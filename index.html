@@ -24,7 +24,7 @@ body {
   color: var(--white);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
-  cursor: none; /* Custom Cursor implementation */
+  cursor: none;
 }
 
 /* CURSOR SYSTEM */
@@ -33,7 +33,6 @@ body {
   background: var(--accent); border-radius: 50%;
   pointer-events: none; z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s;
   mix-blend-mode: multiply;
 }
 .cursor-ring {
@@ -44,30 +43,49 @@ body {
   opacity: 0.5;
 }
 
-/* NAVIGATION */
+/* NAVIGATION & HAMBURGER */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 0 5%; display: flex; align-items: center;
   justify-content: space-between; height: 70px;
   background: var(--nav-bg); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 20px rgba(21,101,192,0.08);
 }
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif; font-size: 28px;
   letter-spacing: 4px; color: var(--accent); text-decoration: none;
 }
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--white2); text-decoration: none; font-size: 11px;
-  letter-spacing: 2px; text-transform: uppercase;
-  font-family: 'Syne', sans-serif; font-weight: 600;
+
+/* HAMBURGER ICON */
+.menu-btn {
+  display: flex; flex-direction: column; gap: 6px;
+  cursor: pointer; z-index: 1100; padding: 10px;
 }
+.menu-btn span {
+  width: 30px; height: 2px; background: var(--accent);
+  transition: 0.3s;
+}
+
+/* SIDE MENU */
+.side-menu {
+  position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+  background: var(--white); color: white; z-index: 1050;
+  display: flex; flex-direction: column; padding: 100px 40px;
+  transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+}
+.side-menu.active { right: 0; }
+.side-menu a {
+  color: #fff; text-decoration: none; font-family: 'Bebas Neue';
+  font-size: 40px; margin-bottom: 20px; transition: 0.3s;
+  cursor: pointer;
+}
+.side-menu a:hover { color: var(--accent2); padding-left: 10px; }
 
 /* HERO SECTION */
 .hero {
-  min-height: 80vh; display: flex; align-items: center;
-  position: relative; padding: 100px 5% 0;
+  min-height: 60vh; display: flex; align-items: center;
+  padding: 100px 5% 0;
   background: linear-gradient(135deg, #e8f1ff 0%, #dceeff 100%);
 }
 .hero-title {
@@ -77,12 +95,11 @@ nav {
 }
 
 /* PRODUCT GRID */
-section { padding: 80px 5%; }
+section { padding: 60px 5%; }
 .section-title {
   font-family: 'Bebas Neue', sans-serif; font-size: 50px;
   margin-bottom: 40px; color: var(--white);
 }
-.section-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 
 .products-grid {
   display: grid;
@@ -92,21 +109,17 @@ section { padding: 80px 5%; }
 
 .product-card {
   background: var(--card); border: 1px solid var(--border);
-  position: relative; overflow: hidden; transition: all 0.3s ease;
+  position: relative; overflow: hidden; transition: 0.3s;
 }
-.product-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(21,101,192,0.1); }
+.product-card.hidden { display: none; }
 
-.product-img-wrap {
-  height: 300px; background: #f8faff;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
+.product-img-wrap { height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 .product-card:hover img { transform: scale(1.08); }
 
 .product-info { padding: 20px; }
-.product-brand { font-size: 10px; letter-spacing: 2px; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
-.product-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--white); }
+.product-brand { font-size: 10px; letter-spacing: 2px; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+.product-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
 
 /* LIGHTBOX */
 .lightbox-overlay {
@@ -117,7 +130,7 @@ section { padding: 80px 5%; }
 }
 .lightbox-overlay.active { opacity: 1; pointer-events: all; }
 .lightbox-inner { max-width: 800px; width: 90%; text-align: center; color: white; }
-.lightbox-img { max-height: 60vh; width: 100%; object-fit: contain; margin-bottom: 20px; border-radius: 8px; }
+.lightbox-img { max-height: 60vh; width: 100%; object-fit: contain; margin-bottom: 20px; }
 
 .btn-order {
   background: var(--accent); color: white; padding: 15px 40px;
@@ -125,14 +138,9 @@ section { padding: 80px 5%; }
   display: inline-block; margin-top: 20px; text-transform: uppercase; letter-spacing: 2px;
 }
 
-/* ANIMATIONS */
-.reveal { opacity: 0; transform: translateY(30px); transition: 0.6s all ease; }
+.reveal { opacity: 0; transform: translateY(20px); transition: 0.6s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {
-  .products-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-}
 </style>
 </head>
 <body>
@@ -141,24 +149,32 @@ section { padding: 80px 5%; }
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <a href="#" class="nav-logo">C2B HUB</a>
-  <ul class="nav-links">
-    <li><a href="#products">Sneakers</a></li>
-    <li><a href="#products">Campus</a></li>
-    <li><a href="#products">Bags & Accessories</a></li>
-  </ul>
-  <div style="font-size: 12px; font-weight: bold; background: var(--accent); color: white; padding: 5px 12px; border-radius: 20px;">ORDERS: +86 19851957535</div>
+  <a href="#" class="nav-logo" onclick="filterCategory('all')">C2B HUB</a>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </nav>
+
+<div class="side-menu" id="sideMenu">
+  <p style="font-size: 10px; letter-spacing: 3px; color: var(--accent2); margin-bottom: 20px;">BROWSE ARCHIVE</p>
+  <a onclick="filterCategory('all')">ALL ITEMS</a>
+  <a onclick="filterCategory('sneakers')">SNEAKERS</a>
+  <a onclick="filterCategory('bags')">BAGS</a>
+  <a onclick="filterCategory('watches')">WATCHES</a>
+  <a onclick="filterCategory('hoodies')">HOODIES</a>
+  <div style="margin-top: auto; font-size: 12px; opacity: 0.5;">WHATSAPP: +86 19851957535</div>
+</div>
 
 <section class="hero">
   <div class="hero-content">
-    <h1 class="hero-title">ARCHIVE<br>COLLECTION</h1>
-    <p style="color: var(--silver); margin-top: 20px;">Direct Sourcing from China. Premium Quality. Any Quantity.</p>
+    <h1 class="hero-title" id="catTitle">PREMIUM ARCHIVE</h1>
+    <p style="color: var(--silver); margin-top: 20px;">Click the menu to filter by collection.</p>
   </div>
 </section>
 
 <section id="products">
-  <h2 class="section-title">FULL <em>ARCHIVE</em></h2>
   <div class="products-grid" id="mainGrid"></div>
 </section>
 
@@ -174,55 +190,71 @@ section { padding: 80px 5%; }
 
 <script>
 const products = [
-  { brand: "Nike", name: "AF1 Supreme White", img: "image_1.jpg" },
-  { brand: "Nike", name: "AF1 Supreme Black", img: "image_2.jpg" },
-  { brand: "Nike", name: "AF1 Supreme Wheat", img: "image_3.jpg" },
-  { brand: "Nike", name: "AF1 Blue/White Contrast", img: "image_4.jpg" },
-  { brand: "Nike", name: "AF1 Classic White", img: "image_5.jpg" },
-  { brand: "Nike", name: "AF1 Contrast Black/White", img: "image_6.jpg" },
-  { brand: "Nike", name: "AF1 Classic Black", img: "image_7.jpg" },
-  { brand: "Nike", name: "AF1 Grey Suede", img: "image_8.jpg" },
-  { brand: "Nike", name: "AF1 Green Contrast", img: "image_9.jpg" },
-  { brand: "Nike", name: "AF1 Panda Edition", img: "image_10.jpg" },
-  { brand: "Nike", name: "AF1 Red Contrast", img: "image_11.jpg" },
-  { brand: "Adidas", name: "Campus Forest Green", img: "image_12.jpg" },
-  { brand: "Adidas", name: "Campus Carbon Grey", img: "image_13.jpg" },
-  { brand: "Adidas", name: "Campus Baby Pink", img: "image_14.jpg" },
-  { brand: "Adidas", name: "Campus Dark Brown", img: "image_15.jpg" },
-  { brand: "Adidas", name: "Campus Cream Suede", img: "image_16.jpg" },
-  { brand: "Adidas", name: "Campus Navy Blue", img: "image_17.jpg" },
-  { brand: "Adidas", name: "Campus Deep Red", img: "image_18.jpg" },
-  { brand: "Adidas", name: "Campus Core Black", img: "image_19.jpg" },
-  { brand: "Adidas", name: "Campus Classic Grey", img: "image_20.jpg" },
-  { brand: "Couture", name: "Purple Orchid 3D Heel", img: "image_21.jpg" },
-  { brand: "Couture", name: "Green Orchid 3D Heel", img: "image_22.jpg" },
-  { brand: "Y2K Archive", name: "Star Buckle Denim Bag", img: "image_23.jpg" },
-  { brand: "Utility", name: "Multi-Pocket Tech Bag", img: "image_24.jpg" },
-  { brand: "Y2K Archive", name: "White Star Buckle Bag", img: "image_25.jpg" },
-  { brand: "Coquette", name: "Red Glossy Cherry Bag", img: "image_26.jpg" },
-  { brand: "Y2K Archive", name: "Black Star Chain Bag", img: "image_27.jpg" },
-  { brand: "Coquette", name: "Black Hello Kitty Bow Bag", img: "image_28.jpg" },
-  { brand: "Coquette", name: "Red Pearl Bow Handbag", img: "image_29.jpg" }
+  { brand: "Nike", name: "AF1 Supreme White", img: "image_1.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Supreme Black", img: "image_2.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Supreme Wheat", img: "image_3.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Blue/White Contrast", img: "image_4.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Classic White", img: "image_5.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Contrast Black/White", img: "image_6.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Classic Black", img: "image_7.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Grey Suede", img: "image_8.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Green Contrast", img: "image_9.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Panda Edition", img: "image_10.jpg", cat: "sneakers" },
+  { brand: "Nike", name: "AF1 Red Contrast", img: "image_11.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Forest Green", img: "image_12.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Carbon Grey", img: "image_13.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Baby Pink", img: "image_14.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Dark Brown", img: "image_15.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Cream Suede", img: "image_16.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Navy Blue", img: "image_17.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Deep Red", img: "image_18.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Core Black", img: "image_19.jpg", cat: "sneakers" },
+  { brand: "Adidas", name: "Campus Classic Grey", img: "image_20.jpg", cat: "sneakers" },
+  { brand: "Couture", name: "Purple Orchid Heel", img: "image_21.jpg", cat: "sneakers" },
+  { brand: "Couture", name: "Green Orchid Heel", img: "image_22.jpg", cat: "sneakers" },
+  { brand: "Y2K Archive", name: "Star Buckle Denim Bag", img: "image_23.jpg", cat: "bags" },
+  { brand: "Utility", name: "Multi-Pocket Tech Bag", img: "image_24.jpg", cat: "bags" },
+  { brand: "Y2K Archive", name: "White Star Buckle Bag", img: "image_25.jpg", cat: "bags" },
+  { brand: "Coquette", name: "Red Glossy Cherry Bag", img: "image_26.jpg", cat: "bags" },
+  { brand: "Y2K Archive", name: "Black Star Chain Bag", img: "image_27.jpg", cat: "bags" },
+  { brand: "Coquette", name: "Black Hello Kitty Bag", img: "image_28.jpg", cat: "bags" },
+  { brand: "Coquette", name: "Red Pearl Bow Bag", img: "image_29.jpg", cat: "bags" }
 ];
 
 const grid = document.getElementById('mainGrid');
 
-// Dynamic Render
-products.forEach((p) => {
-  const card = document.createElement('div');
-  card.className = 'product-card reveal';
-  card.onclick = () => openLightbox(p);
-  card.innerHTML = `
-    <div class="product-img-wrap">
-      <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x400?text=Image+JPG+Needed'">
-    </div>
-    <div class="product-info">
-      <div class="product-brand">${p.brand}</div>
-      <div class="product-name">${p.name}</div>
-    </div>
-  `;
-  grid.appendChild(card);
-});
+function render(data) {
+  grid.innerHTML = '';
+  data.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card reveal visible';
+    card.onclick = () => openLightbox(p);
+    card.innerHTML = `
+      <div class="product-img-wrap"><img src="${p.img}"></div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// TOGGLE HAMBURGER
+function toggleMenu() {
+  document.getElementById('sideMenu').classList.toggle('active');
+}
+
+// CATEGORY FILTER
+function filterCategory(cat) {
+  toggleMenu();
+  document.getElementById('catTitle').innerText = cat === 'all' ? 'PREMIUM ARCHIVE' : cat.toUpperCase();
+  if(cat === 'all') {
+    render(products);
+  } else {
+    const filtered = products.filter(p => p.cat === cat);
+    render(filtered);
+  }
+}
 
 function openLightbox(p) {
   document.getElementById('lbImg').src = p.img;
@@ -231,14 +263,12 @@ function openLightbox(p) {
   document.getElementById('lightbox').classList.add('active');
 }
 
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
 
-// Cursor Follow
+// CURSOR
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
+let mx=0, my=0, rx=0, ry=0;
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
@@ -250,14 +280,7 @@ function animateRing() {
 }
 animateRing();
 
-// Scroll Reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Keyboard ESC
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+render(products);
 </script>
 </body>
 </html>
