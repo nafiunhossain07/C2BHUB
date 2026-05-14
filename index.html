@@ -55,7 +55,6 @@ nav { position:fixed; top:0; width:100%; height:70px; background:white; display:
     z-index:50;
 }
 .add-btn svg { width:24px; height:24px; fill:white; }
-.add-btn:active { transform:scale(0.9); }
 
 .card-details { padding:15px; }
 .card-details span { font-size:10px; font-weight:bold; color:var(--blue); text-transform:uppercase; letter-spacing:1px; }
@@ -80,10 +79,7 @@ nav { position:fixed; top:0; width:100%; height:70px; background:white; display:
 <nav>
     <a href="#" class="logo">C2B HUB</a>
     <div class="nav-icons">
-        <div class="cart-btn" onclick="toggleCart()">
-            🛒
-            <span class="count-badge" id="cartCount">0</span>
-        </div>
+        <div class="cart-btn" onclick="toggleCart()">🛒<span class="count-badge" id="cartCount">0</span></div>
         <div onclick="toggleMenu()" style="cursor:pointer; font-size:28px; color:var(--blue);">☰</div>
     </div>
 </nav>
@@ -135,6 +131,11 @@ const products = [
     { name: "Red White Adidas F50", brand: "Adidas", img: "red-white-f50.jpg", cat: "sneakers" },
     { name: "Hot Pink Adidas F50", brand: "Adidas", img: "hot-pink-f50.jpg", cat: "sneakers" },
 
+    { name: "White Flower Heel", brand: "C2B HUB", img: "white-flower-heel.jpg", cat: "sneakers" },
+    { name: "Pink Flower Heel", brand: "C2B HUB", img: "pink-flower-heel.jpg", cat: "sneakers" },
+    { name: "Purple Flower Heel", brand: "C2B HUB", img: "purple-flower-heel.jpg", cat: "sneakers" },
+    { name: "White Orchid Heel", brand: "C2B HUB", img: "white-orchid-heel.jpg", cat: "sneakers" },
+
     { name: "UPF50+ Summer Jacket Black Mint", brand: "C2B HUB", img: "summer-jacket-black-mint.jpg", cat: "hoodies" },
     { name: "UPF50+ Summer Jacket Outdoor", brand: "C2B HUB", img: "summer-jacket-outdoor.jpg", cat: "hoodies" },
     { name: "UPF50+ Summer Jacket Sports", brand: "C2B HUB", img: "summer-jacket-sports.jpg", cat: "hoodies" },
@@ -146,19 +147,14 @@ const products = [
 
 function render(items) {
     const grid = document.getElementById('productGrid');
-
     grid.innerHTML = items.map(p => `
         <div class="card">
             <div class="img-area">
                 <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x400?text=${encodeURIComponent(p.name)}'">
-
                 <button class="add-btn" type="button" onclick="addToCart('${p.name}')">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                 </button>
             </div>
-
             <div class="card-details">
                 <span>${p.brand}</span>
                 <h3>${p.name}</h3>
@@ -178,10 +174,8 @@ function toggleCart() {
 function addToCart(name) {
     const p = products.find(x => x.name === name);
     cart.push(p);
-
     document.getElementById('cartCount').innerText = cart.length;
     updateCartList();
-
     document.getElementById('cartDrawer').classList.add('active');
 }
 
@@ -222,10 +216,7 @@ function checkout() {
 
 function filter(c) {
     toggleMenu();
-
-    document.getElementById('pageTitle').innerText =
-        c === 'all' ? 'PREMIUM ARCHIVE' : c.toUpperCase();
-
+    document.getElementById('pageTitle').innerText = c === 'all' ? 'PREMIUM ARCHIVE' : c.toUpperCase();
     render(c === 'all' ? products : products.filter(x => x.cat === c));
 }
 
