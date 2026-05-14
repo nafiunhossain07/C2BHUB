@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>C2B HUB — From China to You</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
 <style>
  :root {
    --black: #f0f6ff;
@@ -25,6 +26,7 @@
 
  * { margin: 0; padding: 0; box-sizing: border-box; }
  html { scroll-behavior: smooth; }
+
  body {
    background: var(--black);
    color: var(--white);
@@ -36,7 +38,8 @@
 
  .cursor {
    position: fixed;
-   width: 12px; height: 12px;
+   width: 12px;
+   height: 12px;
    background: var(--accent);
    border-radius: 50%;
    pointer-events: none;
@@ -45,9 +48,11 @@
    transition: transform 0.1s, width 0.2s, height 0.2s;
    mix-blend-mode: multiply;
  }
+
  .cursor-ring {
    position: fixed;
-   width: 40px; height: 40px;
+   width: 40px;
+   height: 40px;
    border: 1.5px solid var(--accent);
    border-radius: 50%;
    pointer-events: none;
@@ -62,10 +67,15 @@
  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
  nav {
-   position: fixed; top: 0; left: 0; right: 0;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
    z-index: 1000;
    padding: 0 5%;
-   display: flex; align-items: center; justify-content: space-between;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
    height: 70px;
    background: var(--nav-bg);
    backdrop-filter: blur(20px);
@@ -73,15 +83,20 @@
    transition: height 0.3s;
    box-shadow: 0 2px 20px rgba(21,101,192,0.08);
  }
+
  nav.scrolled { height: 58px; }
+
  .nav-logo {
    font-family: 'Bebas Neue', sans-serif;
    font-size: 28px;
    letter-spacing: 4px;
    color: var(--accent);
    text-decoration: none;
-   display: flex; align-items: center; gap: 8px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
  }
+
  .nav-logo span {
    color: var(--silver);
    font-size: 9px;
@@ -93,12 +108,19 @@
    text-transform: uppercase;
    line-height: 1.3;
  }
- .nav-logo-wrap { display: flex; flex-direction: column; line-height: 1; }
+
+ .nav-logo-wrap {
+   display: flex;
+   flex-direction: column;
+   line-height: 1;
+ }
 
  .nav-links {
-   display: flex; gap: 36px;
+   display: flex;
+   gap: 36px;
    list-style: none;
  }
+
  .nav-links a {
    color: var(--white2);
    text-decoration: none;
@@ -110,40 +132,75 @@
    transition: color 0.2s;
    position: relative;
  }
+
  .nav-links a::after {
    content: '';
-   position: absolute; bottom: -4px; left: 0; right: 0;
-   height: 2px; background: var(--accent);
-   transform: scaleX(0); transition: transform 0.2s;
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+   right: 0;
+   height: 2px;
+   background: var(--accent);
+   transform: scaleX(0);
+   transition: transform 0.2s;
  }
+
  .nav-links a:hover { color: var(--accent); }
  .nav-links a:hover::after { transform: scaleX(1); }
 
- .nav-actions { display: flex; align-items: center; gap: 20px; }
+ .nav-actions {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+ }
+
  .nav-icon {
-   width: 38px; height: 38px;
+   width: 38px;
+   height: 38px;
    border: 1px solid var(--border2);
    border-radius: 50%;
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    cursor: none;
    transition: border-color 0.2s, background 0.2s;
    position: relative;
  }
- .nav-icon:hover { border-color: var(--accent); background: rgba(21,101,192,0.08); }
- .nav-icon svg { width: 16px; height: 16px; stroke: var(--silver); fill: none; }
+
+ .nav-icon:hover {
+   border-color: var(--accent);
+   background: rgba(21,101,192,0.08);
+ }
+
+ .nav-icon svg {
+   width: 16px;
+   height: 16px;
+   stroke: var(--silver);
+   fill: none;
+ }
+
  .nav-icon:hover svg { stroke: var(--accent); }
+
  .cart-badge {
-   position: absolute; top: -5px; right: -5px;
-   width: 16px; height: 16px;
-   background: var(--red); border-radius: 50%;
-   font-size: 9px; font-weight: 700;
-   display: flex; align-items: center; justify-content: center;
+   position: absolute;
+   top: -5px;
+   right: -5px;
+   width: 16px;
+   height: 16px;
+   background: var(--red);
+   border-radius: 50%;
+   font-size: 9px;
+   font-weight: 700;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    font-family: 'Syne', sans-serif;
    color: white;
  }
 
  .search-bar {
-   display: flex; align-items: center;
+   display: flex;
+   align-items: center;
    background: var(--black3);
    border: 1px solid var(--border);
    border-radius: 100px;
@@ -152,22 +209,48 @@
    height: 36px;
    transition: border-color 0.2s;
  }
+
  .search-bar:focus-within { border-color: var(--accent); }
+
  .search-bar input {
-   background: none; border: none; outline: none;
-   color: var(--white); font-size: 12px;
+   background: none;
+   border: none;
+   outline: none;
+   color: var(--white);
+   font-size: 12px;
    font-family: 'DM Sans', sans-serif;
    width: 140px;
  }
- .search-bar input::placeholder { color: var(--silver); }
- .search-bar svg { width: 14px; height: 14px; stroke: var(--silver); fill: none; flex-shrink: 0; }
 
- .hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; }
- .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--accent); transition: all 0.3s; }
+ .search-bar input::placeholder { color: var(--silver); }
+
+ .search-bar svg {
+   width: 14px;
+   height: 14px;
+   stroke: var(--silver);
+   fill: none;
+   flex-shrink: 0;
+ }
+
+ .hamburger {
+   display: none;
+   flex-direction: column;
+   gap: 5px;
+   cursor: none;
+ }
+
+ .hamburger span {
+   display: block;
+   width: 24px;
+   height: 1.5px;
+   background: var(--accent);
+   transition: all 0.3s;
+ }
 
  .hero {
    min-height: 100vh;
-   display: flex; align-items: center;
+   display: flex;
+   align-items: center;
    position: relative;
    overflow: hidden;
    padding: 70px 5% 0;
@@ -175,14 +258,16 @@
  }
 
  .hero-bg {
-   position: absolute; inset: 0;
+   position: absolute;
+   inset: 0;
    background:
      radial-gradient(ellipse at 70% 50%, rgba(21,101,192,0.10) 0%, transparent 60%),
      radial-gradient(ellipse at 20% 80%, rgba(30,136,229,0.06) 0%, transparent 50%);
  }
 
  .hero-grid-overlay {
-   position: absolute; inset: 0;
+   position: absolute;
+   inset: 0;
    background-image:
      linear-gradient(rgba(21,101,192,0.05) 1px, transparent 1px),
      linear-gradient(90deg, rgba(21,101,192,0.05) 1px, transparent 1px);
@@ -191,7 +276,8 @@
  }
 
  .hero-content {
-   position: relative; z-index: 2;
+   position: relative;
+   z-index: 2;
    max-width: 680px;
  }
 
@@ -202,12 +288,19 @@
    text-transform: uppercase;
    color: var(--accent);
    margin-bottom: 24px;
-   display: flex; align-items: center; gap: 12px;
-   opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   opacity: 0;
+   animation: fadeUp 0.8s 0.2s forwards;
  }
+
  .hero-eyebrow::before {
    content: '';
-   display: block; width: 40px; height: 2px; background: var(--accent);
+   display: block;
+   width: 40px;
+   height: 2px;
+   background: var(--accent);
  }
 
  .hero-title {
@@ -216,13 +309,16 @@
    line-height: 0.92;
    letter-spacing: 2px;
    margin-bottom: 28px;
-   opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+   opacity: 0;
+   animation: fadeUp 0.8s 0.4s forwards;
    color: var(--accent);
  }
+
  .hero-title .line2 {
    color: transparent;
    -webkit-text-stroke: 1.5px var(--accent2);
  }
+
  .hero-title .line3 { color: #1e88e5; }
 
  .hero-tagline {
@@ -232,7 +328,8 @@
    color: var(--accent);
    letter-spacing: 1px;
    margin-bottom: 16px;
-   opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
+   opacity: 0;
+   animation: fadeUp 0.8s 0.55s forwards;
    border-left: 4px solid var(--accent2);
    padding-left: 14px;
    line-height: 1.4;
@@ -244,19 +341,24 @@
    line-height: 1.7;
    max-width: 420px;
    margin-bottom: 44px;
-   opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+   opacity: 0;
+   animation: fadeUp 0.8s 0.6s forwards;
  }
 
  .hero-ctas {
-   display: flex; gap: 16px; align-items: center;
-   opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+   display: flex;
+   gap: 16px;
+   align-items: center;
+   opacity: 0;
+   animation: fadeUp 0.8s 0.8s forwards;
  }
 
  .btn-primary {
    background: var(--accent);
    color: #fff;
    padding: 14px 36px;
-   border: none; border-radius: 0;
+   border: none;
+   border-radius: 0;
    font-family: 'Syne', sans-serif;
    font-size: 12px;
    font-weight: 700;
@@ -268,7 +370,11 @@
    transition: background 0.2s, transform 0.2s;
    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
  }
- .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+ .btn-primary:hover {
+   background: var(--accent2);
+   transform: translateY(-2px);
+ }
 
  .btn-ghost {
    color: var(--accent);
@@ -281,28 +387,46 @@
    text-transform: uppercase;
    cursor: none;
    text-decoration: none;
-   display: inline-flex; align-items: center; gap: 10px;
+   display: inline-flex;
+   align-items: center;
+   gap: 10px;
    transition: border-color 0.2s, color 0.2s, background 0.2s;
  }
- .btn-ghost:hover { border-color: var(--accent); background: rgba(21,101,192,0.07); }
- .btn-ghost svg { width: 16px; height: 16px; fill: none; stroke: currentColor; }
+
+ .btn-ghost:hover {
+   border-color: var(--accent);
+   background: rgba(21,101,192,0.07);
+ }
+
+ .btn-ghost svg {
+   width: 16px;
+   height: 16px;
+   fill: none;
+   stroke: currentColor;
+ }
 
  .hero-visual {
    position: absolute;
-   right: 0; top: 0; bottom: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
    width: 55%;
    overflow: hidden;
  }
 
  .hero-img-container {
-   width: 100%; height: 100%;
+   width: 100%;
+   height: 100%;
    position: relative;
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
  }
 
  .hero-sneaker-art {
    position: absolute;
-   right: -5%; top: 50%;
+   right: -5%;
+   top: 50%;
    transform: translateY(-50%);
    width: 680px;
    opacity: 0.88;
@@ -315,18 +439,31 @@
  }
 
  .hero-badge {
-   position: absolute; bottom: 15%; left: 5%;
+   position: absolute;
+   bottom: 15%;
+   left: 5%;
    background: rgba(255,255,255,0.95);
    border: 1px solid var(--border2);
    backdrop-filter: blur(20px);
    padding: 16px 20px;
-   display: flex; align-items: center; gap: 14px;
-   opacity: 0; animation: fadeUp 1s 1.2s forwards;
+   display: flex;
+   align-items: center;
+   gap: 14px;
+   opacity: 0;
+   animation: fadeUp 1s 1.2s forwards;
    box-shadow: 0 8px 30px rgba(21,101,192,0.12);
  }
+
  .hero-badge-icon { font-size: 28px; }
  .hero-badge-text { font-size: 12px; color: var(--silver); }
- .hero-badge-text strong { display: block; font-size: 16px; color: var(--accent); font-family: 'Syne', sans-serif; font-weight: 700; }
+
+ .hero-badge-text strong {
+   display: block;
+   font-size: 16px;
+   color: var(--accent);
+   font-family: 'Syne', sans-serif;
+   font-weight: 700;
+ }
 
  .hero-stat {
    position: absolute;
@@ -337,33 +474,55 @@
    text-align: center;
    box-shadow: 0 4px 20px rgba(21,101,192,0.10);
  }
+
  .hero-stat-num {
    font-family: 'Bebas Neue', sans-serif;
    font-size: 32px;
    color: var(--accent);
    line-height: 1;
  }
- .hero-stat-label { font-size: 10px; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; }
+
+ .hero-stat-label {
+   font-size: 10px;
+   color: var(--silver);
+   letter-spacing: 2px;
+   text-transform: uppercase;
+ }
+
  .stat1 { top: 25%; left: 8%; animation: fadeUp 0.8s 1.4s both; }
  .stat2 { top: 55%; left: 0%; animation: fadeUp 0.8s 1.6s both; }
 
  .scroll-indicator {
-   position: absolute; bottom: 40px; left: 5%;
-   display: flex; align-items: center; gap: 12px;
-   font-size: 11px; color: var(--silver); letter-spacing: 3px; text-transform: uppercase;
+   position: absolute;
+   bottom: 40px;
+   left: 5%;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   font-size: 11px;
+   color: var(--silver);
+   letter-spacing: 3px;
+   text-transform: uppercase;
    font-family: 'Syne', sans-serif;
    animation: fadeUp 0.8s 1.8s both;
  }
+
  .scroll-line {
-   width: 40px; height: 1px; background: var(--border2);
-   position: relative; overflow: hidden;
+   width: 40px;
+   height: 1px;
+   background: var(--border2);
+   position: relative;
+   overflow: hidden;
  }
+
  .scroll-line::after {
    content: '';
-   position: absolute; inset: 0;
+   position: absolute;
+   inset: 0;
    background: var(--accent);
    animation: scrollLine 1.5s ease-in-out infinite;
  }
+
  @keyframes scrollLine {
    0% { transform: translateX(-100%); }
    100% { transform: translateX(100%); }
@@ -373,44 +532,92 @@
    from { opacity: 0; transform: translateY(30px); }
    to { opacity: 1; transform: translateY(0); }
  }
-
+/* FLASH SALE BANNER */
  .flash-sale-banner {
    background: var(--red);
    padding: 12px 5%;
-   display: flex; align-items: center; justify-content: center; gap: 24px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 24px;
    overflow: hidden;
    position: relative;
  }
+
  .flash-label {
    font-family: 'Bebas Neue', sans-serif;
-   font-size: 18px; letter-spacing: 3px;
-   display: flex; align-items: center; gap: 8px;
-   white-space: nowrap; color: #fff;
+   font-size: 18px;
+   letter-spacing: 3px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   white-space: nowrap;
+   color: #fff;
  }
- .flash-label .flash-icon { animation: flashPulse 0.8s ease-in-out infinite; }
- @keyframes flashPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
- .countdown { display: flex; gap: 8px; align-items: center; }
+ .flash-label .flash-icon { animation: flashPulse 0.8s ease-in-out infinite; }
+
+ @keyframes flashPulse {
+   0%,100% { opacity: 1; }
+   50% { opacity: 0.4; }
+ }
+
+ .countdown {
+   display: flex;
+   gap: 8px;
+   align-items: center;
+ }
+
  .countdown-unit {
    background: rgba(0,0,0,0.25);
    padding: 4px 10px;
    font-family: 'Bebas Neue', sans-serif;
-   font-size: 20px; letter-spacing: 2px;
+   font-size: 20px;
+   letter-spacing: 2px;
    border-radius: 2px;
-   min-width: 42px; text-align: center; color: #fff;
+   min-width: 42px;
+   text-align: center;
+   color: #fff;
  }
- .countdown-sep { font-size: 18px; font-weight: 700; margin-top: -2px; opacity: 0.7; color: #fff; }
- .flash-text { font-size: 13px; letter-spacing: 1px; opacity: 0.9; white-space: nowrap; color: #fff; }
+
+ .countdown-sep {
+   font-size: 18px;
+   font-weight: 700;
+   margin-top: -2px;
+   opacity: 0.7;
+   color: #fff;
+ }
+
+ .flash-text {
+   font-size: 13px;
+   letter-spacing: 1px;
+   opacity: 0.9;
+   white-space: nowrap;
+   color: #fff;
+ }
 
  section { padding: 100px 5%; }
+
  .section-tag {
    font-family: 'Syne', sans-serif;
-   font-size: 10px; letter-spacing: 5px;
-   text-transform: uppercase; color: var(--accent);
+   font-size: 10px;
+   letter-spacing: 5px;
+   text-transform: uppercase;
+   color: var(--accent);
    margin-bottom: 12px;
-   display: flex; align-items: center; gap: 10px;
+   display: flex;
+   align-items: center;
+   gap: 10px;
  }
- .section-tag::before { content: ''; display: block; width: 24px; height: 2px; background: var(--accent); }
+
+ .section-tag::before {
+   content: '';
+   display: block;
+   width: 24px;
+   height: 2px;
+   background: var(--accent);
+ }
+
  .section-title {
    font-family: 'Bebas Neue', sans-serif;
    font-size: clamp(42px, 6vw, 72px);
@@ -419,10 +626,28 @@
    margin-bottom: 8px;
    color: var(--white);
  }
- .section-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
- .section-sub { color: var(--silver); font-size: 14px; max-width: 400px; margin-bottom: 56px; line-height: 1.7; }
 
- .categories-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+ .section-title em {
+   font-style: normal;
+   color: transparent;
+   -webkit-text-stroke: 1.5px var(--accent);
+ }
+
+ .section-sub {
+   color: var(--silver);
+   font-size: 14px;
+   max-width: 400px;
+   margin-bottom: 56px;
+   line-height: 1.7;
+ }
+
+ /* CATEGORIES */
+ .categories-grid {
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 12px;
+ }
+
  .cat-card {
    background: var(--card);
    border: 1px solid var(--border);
@@ -432,40 +657,96 @@
    transition: all 0.3s;
    position: relative;
    overflow: hidden;
-   display: flex; flex-direction: column; align-items: center; gap: 14px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 14px;
    box-shadow: 0 2px 12px rgba(21,101,192,0.06);
  }
+
  .cat-card::before {
    content: '';
-   position: absolute; bottom: 0; left: 0; right: 0;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
    height: 0;
    background: linear-gradient(to top, rgba(21,101,192,0.10), transparent);
    transition: height 0.4s;
  }
- .cat-card:hover::before { height: 100%; }
- .cat-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(21,101,192,0.14); }
- .cat-icon { font-size: 36px; transition: transform 0.3s; }
- .cat-card:hover .cat-icon { transform: scale(1.15) rotate(-5deg); }
- .cat-name { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white2); transition: color 0.2s; }
- .cat-card:hover .cat-name { color: var(--accent); }
- .cat-count { font-size: 11px; color: var(--silver); }
 
- .products-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
- .products-filter { display: flex; gap: 8px; }
+ .cat-card:hover::before { height: 100%; }
+
+ .cat-card:hover {
+   border-color: var(--accent);
+   transform: translateY(-4px);
+   box-shadow: 0 8px 24px rgba(21,101,192,0.14);
+ }
+
+ .cat-icon {
+   font-size: 36px;
+   transition: transform 0.3s;
+ }
+
+ .cat-card:hover .cat-icon {
+   transform: scale(1.15) rotate(-5deg);
+ }
+
+ .cat-name {
+   font-family: 'Syne', sans-serif;
+   font-size: 10px;
+   font-weight: 600;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--white2);
+   transition: color 0.2s;
+ }
+
+ .cat-card:hover .cat-name { color: var(--accent); }
+
+ .cat-count {
+   font-size: 11px;
+   color: var(--silver);
+ }
+
+ /* PRODUCTS */
+ .products-header {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   margin-bottom: 48px;
+ }
+
+ .products-filter {
+   display: flex;
+   gap: 8px;
+ }
+
  .filter-btn {
    padding: 8px 20px;
    border: 1px solid var(--border);
    background: none;
    color: var(--silver);
    font-family: 'Syne', sans-serif;
-   font-size: 10px; letter-spacing: 2px;
+   font-size: 10px;
+   letter-spacing: 2px;
    text-transform: uppercase;
    cursor: none;
    transition: all 0.2s;
  }
- .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
- .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+ .filter-btn.active,
+ .filter-btn:hover {
+   background: var(--accent);
+   border-color: var(--accent);
+   color: #fff;
+ }
+
+ .products-grid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 20px;
+ }
 
  .product-card {
    background: var(--card);
@@ -476,65 +757,168 @@
    transition: border-color 0.3s, box-shadow 0.3s;
    box-shadow: 0 2px 12px rgba(21,101,192,0.06);
  }
- .product-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(21,101,192,0.13); }
+
+ .product-card:hover {
+   border-color: var(--accent);
+   box-shadow: 0 8px 30px rgba(21,101,192,0.13);
+ }
 
  .product-img-wrap {
    height: 260px;
    background: var(--black3);
    position: relative;
    overflow: hidden;
-   display: flex; align-items: center; justify-content: center;
-   font-size: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
  }
+
+ .product-img-wrap img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
+   transition: transform 0.4s ease;
+ }
+
+ .product-card:hover .product-img-wrap img {
+   transform: scale(1.06);
+ }
+
  .product-img-wrap::after {
    content: '';
-   position: absolute; inset: 0;
+   position: absolute;
+   inset: 0;
    background: linear-gradient(to bottom, transparent 40%, rgba(21,101,192,0.08));
+   pointer-events: none;
  }
- .product-emoji { transition: transform 0.4s; z-index: 1; line-height: 1; }
- .product-card:hover .product-emoji { transform: scale(1.1) rotate(-5deg); }
 
  .product-tag {
-   position: absolute; top: 16px; left: 16px;
-   background: var(--red); color: #fff;
+   position: absolute;
+   top: 16px;
+   left: 16px;
+   background: var(--red);
+   color: #fff;
    padding: 4px 10px;
    font-family: 'Syne', sans-serif;
-   font-size: 9px; font-weight: 700;
-   letter-spacing: 2px; text-transform: uppercase;
+   font-size: 9px;
+   font-weight: 700;
+   letter-spacing: 2px;
+   text-transform: uppercase;
    z-index: 2;
  }
- .product-tag.new { background: var(--accent); color: #fff; }
- .product-tag.limited { background: #fff; border: 1px solid var(--border2); color: var(--accent); }
+
+ .product-tag.new {
+   background: var(--accent);
+   color: #fff;
+ }
+
+ .product-tag.limited {
+   background: #fff;
+   border: 1px solid var(--border2);
+   color: var(--accent);
+ }
 
  .product-actions {
-   position: absolute; top: 16px; right: 16px;
-   display: flex; flex-direction: column; gap: 8px;
+   position: absolute;
+   top: 16px;
+   right: 16px;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
    transform: translateX(60px);
    transition: transform 0.3s;
    z-index: 2;
  }
- .product-card:hover .product-actions { transform: translateX(0); }
+
+ .product-card:hover .product-actions {
+   transform: translateX(0);
+ }
+
  .product-action-btn {
-   width: 36px; height: 36px;
+   width: 36px;
+   height: 36px;
    background: rgba(255,255,255,0.95);
    border: 1px solid var(--border2);
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    cursor: none;
    transition: background 0.2s, border-color 0.2s;
    backdrop-filter: blur(10px);
  }
- .product-action-btn:hover { background: var(--accent); border-color: var(--accent); }
- .product-action-btn svg { width: 14px; height: 14px; stroke: var(--accent); fill: none; }
- .product-action-btn:hover svg { stroke: #fff; }
+
+ .product-action-btn:hover {
+   background: var(--accent);
+   border-color: var(--accent);
+ }
+
+ .product-action-btn svg {
+   width: 14px;
+   height: 14px;
+   stroke: var(--accent);
+   fill: none;
+ }
+
+ .product-action-btn:hover svg {
+   stroke: #fff;
+ }
 
  .product-info { padding: 20px 18px; }
- .product-brand { font-size: 10px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 6px; }
- .product-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--white); line-height: 1.3; }
- .product-variant { font-size: 11px; color: var(--silver); margin-bottom: 14px; }
- .product-pricing { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
- .price-current { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--accent); }
- .price-old { font-size: 13px; color: var(--silver); text-decoration: line-through; }
- .price-off { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 1px; font-family: 'Syne', sans-serif; }
+
+ .product-brand {
+   font-size: 10px;
+   letter-spacing: 3px;
+   color: var(--accent);
+   text-transform: uppercase;
+   font-family: 'Syne', sans-serif;
+   font-weight: 600;
+   margin-bottom: 6px;
+ }
+
+ .product-name {
+   font-family: 'Syne', sans-serif;
+   font-size: 14px;
+   font-weight: 700;
+   margin-bottom: 4px;
+   color: var(--white);
+   line-height: 1.3;
+ }
+
+ .product-variant {
+   font-size: 11px;
+   color: var(--silver);
+   margin-bottom: 14px;
+ }
+
+ .product-pricing {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 16px;
+ }
+
+ .price-current {
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 22px;
+   letter-spacing: 1px;
+   color: var(--accent);
+ }
+
+ .price-old {
+   font-size: 13px;
+   color: var(--silver);
+   text-decoration: line-through;
+ }
+
+ .price-off {
+   font-size: 10px;
+   font-weight: 700;
+   color: var(--red);
+   letter-spacing: 1px;
+   font-family: 'Syne', sans-serif;
+ }
+
  .add-cart-btn {
    width: 100%;
    background: transparent;
@@ -542,17 +926,43 @@
    color: var(--accent);
    padding: 11px;
    font-family: 'Syne', sans-serif;
-   font-size: 10px; font-weight: 700;
-   letter-spacing: 3px; text-transform: uppercase;
+   font-size: 10px;
+   font-weight: 700;
+   letter-spacing: 3px;
+   text-transform: uppercase;
    cursor: none;
    transition: all 0.2s;
-   display: flex; align-items: center; justify-content: center; gap: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
  }
- .add-cart-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
- .add-cart-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; }
 
- .trending-section { background: var(--black2); }
- .trending-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+ .add-cart-btn:hover {
+   background: var(--accent);
+   border-color: var(--accent);
+   color: #fff;
+ }
+
+ .add-cart-btn svg {
+   width: 13px;
+   height: 13px;
+   fill: none;
+   stroke: currentColor;
+ }
+Paste this directly after Part 2.
+ /* TRENDING COLLECTION */
+ .trending-section {
+   background: var(--black2);
+ }
+
+ .trending-grid {
+   display: grid;
+   grid-template-columns: 1.6fr 1fr 1fr;
+   grid-template-rows: auto auto;
+   gap: 16px;
+ }
+
  .trend-card {
    background: var(--card);
    border: 1px solid var(--border);
@@ -562,11 +972,23 @@
    transition: border-color 0.3s, box-shadow 0.3s;
    box-shadow: 0 2px 12px rgba(21,101,192,0.06);
  }
- .trend-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(21,101,192,0.13); }
- .trend-card.featured { grid-row: 1 / 3; display: flex; flex-direction: column; }
+
+ .trend-card:hover {
+   border-color: var(--accent);
+   box-shadow: 0 8px 30px rgba(21,101,192,0.13);
+ }
+
+ .trend-card.featured {
+   grid-row: 1 / 3;
+   display: flex;
+   flex-direction: column;
+ }
+
  .trend-img {
    flex: 1;
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    font-size: 120px;
    background: var(--black3);
    min-height: 220px;
@@ -574,42 +996,149 @@
    overflow: hidden;
    transition: transform 0.4s;
  }
- .trend-card:hover .trend-img { transform: scale(1.02); }
- .trend-img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(21,101,192,0.06), transparent); }
- .trend-info { padding: 20px; }
- .trend-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--white); }
- .trend-card.featured .trend-name { font-size: 22px; }
- .trend-desc { font-size: 12px; color: var(--silver); margin-bottom: 14px; line-height: 1.5; }
- .trend-price { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--accent); letter-spacing: 1px; }
 
- .insta-section { padding: 100px 5%; background: var(--black); }
- .insta-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
- .insta-handle { display: flex; align-items: center; gap: 12px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
- .insta-handle-icon { width: 38px; height: 38px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
- .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, 200px); gap: 8px; }
+ .trend-card:hover .trend-img {
+   transform: scale(1.02);
+ }
+
+ .trend-img::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   background: linear-gradient(135deg, rgba(21,101,192,0.06), transparent);
+ }
+
+ .trend-info {
+   padding: 20px;
+ }
+
+ .trend-name {
+   font-family: 'Syne', sans-serif;
+   font-size: 15px;
+   font-weight: 700;
+   margin-bottom: 6px;
+   color: var(--white);
+ }
+
+ .trend-card.featured .trend-name {
+   font-size: 22px;
+ }
+
+ .trend-desc {
+   font-size: 12px;
+   color: var(--silver);
+   margin-bottom: 14px;
+   line-height: 1.5;
+ }
+
+ .trend-price {
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 24px;
+   color: var(--accent);
+   letter-spacing: 1px;
+ }
+
+ /* INSTAGRAM GRID */
+ .insta-section {
+   padding: 100px 5%;
+   background: var(--black);
+ }
+
+ .insta-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 32px;
+ }
+
+ .insta-handle {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   font-family: 'Syne', sans-serif;
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--accent);
+   text-decoration: none;
+ }
+
+ .insta-handle-icon {
+   width: 38px;
+   height: 38px;
+   background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 18px;
+ }
+
+ .insta-grid {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   grid-template-rows: repeat(2, 200px);
+   gap: 8px;
+ }
+
  .insta-item {
    background: var(--black3);
    border: 1px solid var(--border);
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    font-size: 60px;
-   position: relative; overflow: hidden;
+   position: relative;
+   overflow: hidden;
    cursor: none;
    transition: border-color 0.3s;
  }
- .insta-item:hover { border-color: var(--accent); }
- .insta-item.span2 { grid-column: span 2; }
- .insta-item:hover .insta-overlay { opacity: 1; }
- .insta-overlay {
-   position: absolute; inset: 0;
-   background: rgba(21,101,192,0.18);
-   display: flex; align-items: center; justify-content: center;
-   opacity: 0; transition: opacity 0.3s;
-   flex-direction: column; gap: 4px;
- }
- .insta-overlay span { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
 
- .reviews-section { background: var(--black2); }
- .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+ .insta-item:hover {
+   border-color: var(--accent);
+ }
+
+ .insta-item.span2 {
+   grid-column: span 2;
+ }
+
+ .insta-item:hover .insta-overlay {
+   opacity: 1;
+ }
+
+ .insta-overlay {
+   position: absolute;
+   inset: 0;
+   background: rgba(21,101,192,0.18);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   opacity: 0;
+   transition: opacity 0.3s;
+   flex-direction: column;
+   gap: 4px;
+ }
+
+ .insta-overlay span {
+   font-family: 'Syne', sans-serif;
+   font-size: 11px;
+   font-weight: 700;
+   color: var(--accent);
+   letter-spacing: 2px;
+   text-transform: uppercase;
+ }
+
+ /* REVIEWS */
+ .reviews-section {
+   background: var(--black2);
+ }
+
+ .reviews-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+   margin-top: 56px;
+ }
+
  .review-card {
    background: var(--card);
    border: 1px solid var(--border);
@@ -619,120 +1148,463 @@
    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
    box-shadow: 0 2px 12px rgba(21,101,192,0.06);
  }
- .review-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(21,101,192,0.13); }
- .review-card::before { content: '"'; position: absolute; top: -10px; right: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 120px; color: rgba(21,101,192,0.07); line-height: 1; }
- .review-stars { display: flex; gap: 3px; margin-bottom: 16px; font-size: 14px; }
- .star { color: #f9a825; }
- .review-text { font-size: 14px; color: var(--white2); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
- .review-user { display: flex; align-items: center; gap: 12px; }
- .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--black3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
- .review-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); }
- .review-meta { font-size: 11px; color: var(--silver); }
- .review-verified { color: var(--accent); font-size: 10px; margin-left: 4px; }
 
- .brand-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 24px 5%; overflow: hidden; background: #fff; }
- .brand-scroll { display: flex; gap: 60px; align-items: center; animation: brandScroll 20s linear infinite; width: max-content; }
- .brand-item { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 4px; color: var(--silver); white-space: nowrap; transition: color 0.2s; display: flex; align-items: center; gap: 16px; }
- .brand-item::before { content: '◆'; font-size: 8px; color: var(--accent); }
- .brand-item:hover { color: var(--accent); }
- @keyframes brandScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+ .review-card:hover {
+   border-color: var(--accent);
+   transform: translateY(-4px);
+   box-shadow: 0 8px 30px rgba(21,101,192,0.13);
+ }
 
- .contact-section { background: var(--black); }
- .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
- .contact-big-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 6vw, 80px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 24px; color: var(--white); }
- .contact-big-text em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
- .contact-desc { color: var(--silver); font-size: 14px; line-height: 1.8; max-width: 380px; margin-bottom: 40px; }
- .contact-info-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+ .review-card::before {
+   content: '"';
+   position: absolute;
+   top: -10px;
+   right: 20px;
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 120px;
+   color: rgba(21,101,192,0.07);
+   line-height: 1;
+ }
 
- .social-buttons { display: flex; flex-direction: column; gap: 14px; }
+ .review-stars {
+   display: flex;
+   gap: 3px;
+   margin-bottom: 16px;
+   font-size: 14px;
+ }
+
+ .star {
+   color: #f9a825;
+ }
+
+ .review-text {
+   font-size: 14px;
+   color: var(--white2);
+   line-height: 1.7;
+   margin-bottom: 20px;
+   font-style: italic;
+ }
+
+ .review-user {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+ }
+
+ .review-avatar {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   background: var(--black3);
+   border: 1px solid var(--border2);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 18px;
+ }
+
+ .review-name {
+   font-family: 'Syne', sans-serif;
+   font-size: 13px;
+   font-weight: 700;
+   color: var(--white);
+ }
+
+ .review-meta {
+   font-size: 11px;
+   color: var(--silver);
+ }
+
+ .review-verified {
+   color: var(--accent);
+   font-size: 10px;
+   margin-left: 4px;
+ }
+
+ /* BRAND STRIP */
+ .brand-strip {
+   border-top: 1px solid var(--border);
+   border-bottom: 1px solid var(--border);
+   padding: 24px 5%;
+   overflow: hidden;
+   background: #fff;
+ }
+
+ .brand-scroll {
+   display: flex;
+   gap: 60px;
+   align-items: center;
+   animation: brandScroll 20s linear infinite;
+   width: max-content;
+ }
+
+ .brand-item {
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 20px;
+   letter-spacing: 4px;
+   color: var(--silver);
+   white-space: nowrap;
+   transition: color 0.2s;
+   display: flex;
+   align-items: center;
+   gap: 16px;
+ }
+
+ .brand-item::before {
+   content: '◆';
+   font-size: 8px;
+   color: var(--accent);
+ }
+
+ .brand-item:hover {
+   color: var(--accent);
+ }
+
+ @keyframes brandScroll {
+   0% { transform: translateX(0); }
+   100% { transform: translateX(-50%); }
+ }
+
+ /* CONTACT SECTION */
+ .contact-section {
+   background: var(--black);
+ }
+
+ .contact-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 60px;
+   align-items: center;
+ }
+
+ .contact-big-text {
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: clamp(48px, 6vw, 80px);
+   line-height: 0.95;
+   letter-spacing: 2px;
+   margin-bottom: 24px;
+   color: var(--white);
+ }
+
+ .contact-big-text em {
+   font-style: normal;
+   color: transparent;
+   -webkit-text-stroke: 1.5px var(--accent);
+ }
+
+ .contact-desc {
+   color: var(--silver);
+   font-size: 14px;
+   line-height: 1.8;
+   max-width: 380px;
+   margin-bottom: 40px;
+ }
+
+ .contact-info-row {
+   display: flex;
+   gap: 24px;
+   flex-wrap: wrap;
+   margin-bottom: 28px;
+ }
+
+ .social-buttons {
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
+ }
+
  .social-btn {
-   display: flex; align-items: center; gap: 16px;
+   display: flex;
+   align-items: center;
+   gap: 16px;
    padding: 16px 24px;
    border: 1px solid var(--border);
-   text-decoration: none; color: var(--white);
+   text-decoration: none;
+   color: var(--white);
    transition: all 0.3s;
    cursor: none;
-   position: relative; overflow: hidden;
+   position: relative;
+   overflow: hidden;
    background: var(--card);
    box-shadow: 0 2px 10px rgba(21,101,192,0.06);
  }
- .social-btn::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); transition: transform 0.3s; z-index: 0; }
- .social-btn:hover::before { transform: translateX(0); }
- .social-btn:hover { border-color: var(--accent); color: #fff; }
- .social-btn > * { position: relative; z-index: 1; }
- .social-icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; border: 1px solid var(--border2); transition: border-color 0.3s; }
- .social-btn-text { flex: 1; }
- .social-btn-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; display: block; color: var(--white); }
- .social-btn:hover .social-btn-name { color: #fff; }
- .social-btn-sub { font-size: 11px; color: var(--silver); }
- .social-btn:hover .social-btn-sub { color: rgba(255,255,255,0.8); }
- .social-arrow { font-size: 18px; opacity: 0.5; transition: opacity 0.2s; color: var(--accent); }
- .social-btn:hover .social-arrow { opacity: 1; color: #fff; }
 
+ .social-btn::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   background: var(--accent);
+   transform: translateX(-100%);
+   transition: transform 0.3s;
+   z-index: 0;
+ }
+
+ .social-btn:hover::before {
+   transform: translateX(0);
+ }
+
+ .social-btn:hover {
+   border-color: var(--accent);
+   color: #fff;
+ }
+
+ .social-btn > * {
+   position: relative;
+   z-index: 1;
+ }
+
+ .social-icon-circle {
+   width: 42px;
+   height: 42px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 20px;
+   flex-shrink: 0;
+   border: 1px solid var(--border2);
+   transition: border-color 0.3s;
+ }
+
+ .social-btn-text {
+   flex: 1;
+ }
+
+ .social-btn-name {
+   font-family: 'Syne', sans-serif;
+   font-size: 13px;
+   font-weight: 700;
+   display: block;
+   color: var(--white);
+ }
+
+ .social-btn:hover .social-btn-name {
+   color: #fff;
+ }
+
+ .social-btn-sub {
+   font-size: 11px;
+   color: var(--silver);
+ }
+
+ .social-btn:hover .social-btn-sub {
+   color: rgba(255,255,255,0.8);
+ }
+
+ .social-arrow {
+   font-size: 18px;
+   opacity: 0.5;
+   transition: opacity 0.2s;
+   color: var(--accent);
+ }
+
+ .social-btn:hover .social-arrow {
+   opacity: 1;
+   color: #fff;
+ }
+/* WECHAT SPECIAL */
  .wechat-card {
    background: var(--card);
    border: 1.5px solid #07c160;
    border-radius: 4px;
    padding: 20px 24px;
-   display: flex; align-items: center; gap: 18px;
+   display: flex;
+   align-items: center;
+   gap: 18px;
    margin-bottom: 14px;
    box-shadow: 0 4px 20px rgba(7,193,96,0.10);
    transition: box-shadow 0.3s, transform 0.2s;
  }
- .wechat-card:hover { box-shadow: 0 8px 30px rgba(7,193,96,0.18); transform: translateY(-2px); }
- .wechat-icon { width: 50px; height: 50px; background: #07c160; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
- .wechat-label { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #07c160; font-weight: 700; margin-bottom: 4px; }
- .wechat-id { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: 1px; }
- .wechat-sub { font-size: 11px; color: var(--silver); margin-top: 2px; }
+
+ .wechat-card:hover {
+   box-shadow: 0 8px 30px rgba(7,193,96,0.18);
+   transform: translateY(-2px);
+ }
+
+ .wechat-icon {
+   width: 50px;
+   height: 50px;
+   background: #07c160;
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 26px;
+   flex-shrink: 0;
+ }
+
+ .wechat-label {
+   font-family: 'Syne', sans-serif;
+   font-size: 11px;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   color: #07c160;
+   font-weight: 700;
+   margin-bottom: 4px;
+ }
+
+ .wechat-id {
+   font-family: 'Syne', sans-serif;
+   font-size: 16px;
+   font-weight: 800;
+   color: var(--white);
+   letter-spacing: 1px;
+ }
+
+ .wechat-sub {
+   font-size: 11px;
+   color: var(--silver);
+   margin-top: 2px;
+ }
 
  .whatsapp-float {
-   position: fixed; bottom: 32px; right: 32px;
-   width: 54px; height: 54px;
+   position: fixed;
+   bottom: 32px;
+   right: 32px;
+   width: 54px;
+   height: 54px;
    background: #25d366;
    border-radius: 50%;
-   display: flex; align-items: center; justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    z-index: 999;
    cursor: none;
    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
    transition: transform 0.2s;
    animation: waPulse 2s ease-in-out infinite;
-   text-decoration: none; font-size: 24px;
+   text-decoration: none;
+   font-size: 24px;
  }
- .whatsapp-float:hover { transform: scale(1.1); }
- @keyframes waPulse { 0%,100% { box-shadow: 0 8px 30px rgba(37,211,102,0.4); } 50% { box-shadow: 0 8px 40px rgba(37,211,102,0.7); } }
 
- footer { background: var(--white2); border-top: 1px solid var(--border); padding: 60px 5% 30px; }
- .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
- .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 4px; color: #fff; margin-bottom: 8px; }
- .footer-tagline { font-size: 11px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
- .footer-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 280px; }
- .footer-heading { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 20px; }
- .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
- .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
- .footer-links a:hover { color: #fff; }
- .footer-links a::before { content: '—'; font-size: 10px; color: rgba(255,255,255,0.25); }
- .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
- .footer-copy { font-size: 12px; color: rgba(255,255,255,0.5); }
+ .whatsapp-float:hover {
+   transform: scale(1.1);
+ }
+
+ @keyframes waPulse {
+   0%,100% { box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+   50% { box-shadow: 0 8px 40px rgba(37,211,102,0.7); }
+ }
+
+ footer {
+   background: var(--white2);
+   border-top: 1px solid var(--border);
+   padding: 60px 5% 30px;
+ }
+
+ .footer-grid {
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr 1fr;
+   gap: 60px;
+   margin-bottom: 50px;
+ }
+
+ .footer-brand-name {
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 36px;
+   letter-spacing: 4px;
+   color: #fff;
+   margin-bottom: 8px;
+ }
+
+ .footer-tagline {
+   font-size: 11px;
+   color: var(--accent2);
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   margin-bottom: 20px;
+ }
+
+ .footer-desc {
+   font-size: 13px;
+   color: rgba(255,255,255,0.6);
+   line-height: 1.8;
+   max-width: 280px;
+ }
+
+ .footer-heading {
+   font-family: 'Syne', sans-serif;
+   font-size: 10px;
+   font-weight: 700;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   color: var(--accent2);
+   margin-bottom: 20px;
+ }
+
+ .footer-links {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+ }
+
+ .footer-links a {
+   color: rgba(255,255,255,0.6);
+   text-decoration: none;
+   font-size: 13px;
+ }
+
+ .footer-bottom {
+   border-top: 1px solid rgba(255,255,255,0.1);
+   padding-top: 24px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+ }
+
+ .footer-copy {
+   font-size: 12px;
+   color: rgba(255,255,255,0.5);
+ }
+
  .footer-copy span { color: var(--accent2); }
- .footer-socials { display: flex; gap: 10px; }
- .footer-social { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: none; transition: border-color 0.2s, background 0.2s; text-decoration: none; }
- .footer-social:hover { border-color: var(--accent2); background: rgba(30,136,229,0.15); }
 
- /* MOBILE STATS ROW */
- .hero-stats-mobile { display: none; }
- @media (max-width: 1024px) {
-   .hero-stats-mobile { display: flex; gap: 10px; margin-top: 28px; }
-   .hero-stat-mobile { flex: 1; background: rgba(255,255,255,0.85); border: 1px solid var(--border2); border-radius: 6px; padding: 12px 8px; text-align: center; box-shadow: 0 2px 10px rgba(21,101,192,0.08); }
-   .hero-stat-mobile .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--accent); line-height: 1; display: block; }
-   .hero-stat-mobile .hero-stat-label { font-size: 9px; color: var(--silver); letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 4px; }
+ .footer-socials {
+   display: flex;
+   gap: 10px;
  }
 
- /* SCROLL ANIMATION */
- .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s, transform 0.7s; }
- .reveal.visible { opacity: 1; transform: translateY(0); }
+ .footer-social {
+   width: 34px;
+   height: 34px;
+   border: 1px solid rgba(255,255,255,0.15);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 14px;
+   text-decoration: none;
+ }
 
- /* MOBILE */
+ .hero-stats-mobile { display: none; }
+
+ .reveal {
+   opacity: 0;
+   transform: translateY(40px);
+   transition: opacity 0.7s, transform 0.7s;
+ }
+
+ .reveal.visible {
+   opacity: 1;
+   transform: translateY(0);
+ }
+
  @media (max-width: 1024px) {
+   .hero-stats-mobile {
+     display: flex;
+     gap: 10px;
+     margin-top: 28px;
+   }
+
+   .hero-stat-mobile {
+     flex: 1;
+     background: rgba(255,255,255,0.85);
+     border: 1px solid var(--border2);
+     border-radius: 6px;
+     padding: 12px 8px;
+     text-align: center;
+   }
+
    .categories-grid { grid-template-columns: repeat(4, 1fr); }
    .products-grid { grid-template-columns: repeat(2, 1fr); }
    .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -744,13 +1616,16 @@
    .insta-item.span2 { grid-column: span 1; }
    .hero-stat, .hero-badge, .scroll-indicator { display: none; }
  }
+
  @media (max-width: 768px) {
-   .hero { min-height: auto; padding: 100px 5% 60px; display: block; }
+   .hero {
+     min-height: auto;
+     padding: 100px 5% 60px;
+     display: block;
+   }
+
    .hero-visual { display: none; }
-   .hero-content { max-width: 100%; position: relative; z-index: 2; }
-   .hero-title { font-size: clamp(54px, 14vw, 80px); }
-   .hero-tagline { font-size: 15px; }
-   .hero-stat, .hero-badge, .scroll-indicator { display: none; }
+   .hero-content { max-width: 100%; }
    .contact-grid { grid-template-columns: 1fr; }
    .reviews-grid { grid-template-columns: 1fr; }
    .categories-grid { grid-template-columns: repeat(3, 1fr); }
@@ -758,18 +1633,18 @@
    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
    .btn-primary, .btn-ghost { width: 100%; text-align: center; justify-content: center; }
  }
+
  @media (max-width: 480px) {
    .products-grid { grid-template-columns: 1fr; }
    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
    .categories-grid { grid-template-columns: repeat(2, 1fr); }
    section { padding: 60px 4%; }
    .insta-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 140px); }
-   .hero { padding: 90px 4% 50px; }
-   .hero-title { font-size: clamp(48px, 13vw, 70px); }
    .trending-grid { grid-template-columns: 1fr; }
  }
 </style>
 </head>
+
 <body>
 
 <div class="cursor" id="cursor"></div>
@@ -782,6 +1657,7 @@
      <span>From China to You · Any Product, Any Quantity</span>
    </div>
  </a>
+
  <ul class="nav-links">
    <li><a href="#categories">Shop</a></li>
    <li><a href="#products">New In</a></li>
@@ -790,18 +1666,15 @@
    <li><a href="#reviews">Reviews</a></li>
    <li><a href="#contact">Contact</a></li>
  </ul>
+
  <div class="nav-actions">
    <div class="search-bar">
      <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
      <input type="text" placeholder="Search products...">
    </div>
-   <div class="nav-icon">
-     <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-   </div>
-   <div class="nav-icon">
-     <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-     <span class="cart-badge">3</span>
-   </div>
+
+   <div class="nav-icon">♡</div>
+   <div class="nav-icon">🛍️<span class="cart-badge">3</span></div>
    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
  </div>
 </nav>
@@ -809,6 +1682,7 @@
 <section class="hero" id="hero">
  <div class="hero-bg"></div>
  <div class="hero-grid-overlay"></div>
+
  <div class="hero-content">
    <div class="hero-eyebrow">New Collection 2025</div>
    <h1 class="hero-title">
@@ -818,70 +1692,22 @@
    </h1>
    <div class="hero-tagline">From China to You — Any Product, Any Quantity, Anytime!</div>
    <p class="hero-desc">Premium streetwear, iconic sneakers, and luxury accessories sourced directly from China. Fast shipping, unbeatable prices, trusted by thousands.</p>
+
    <div class="hero-ctas">
      <a href="#products" class="btn-primary">Shop Now</a>
-     <a href="#contact" class="btn-ghost">
-       <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-       Order Now
-     </a>
-   </div>
-   <div class="hero-stats-mobile">
-     <div class="hero-stat-mobile"><div class="hero-stat-num">5K+</div><div class="hero-stat-label">Happy Clients</div></div>
-     <div class="hero-stat-mobile"><div class="hero-stat-num">200+</div><div class="hero-stat-label">Products</div></div>
-     <div class="hero-stat-mobile"><div class="hero-stat-num">🔥</div><div class="hero-stat-label">Trending</div></div>
+     <a href="#contact" class="btn-ghost">Order Now</a>
    </div>
  </div>
 
- <div class="hero-visual">
-   <div class="hero-img-container">
-     <svg class="hero-sneaker-art" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-       <defs>
-         <linearGradient id="sneakerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-           <stop offset="0%" style="stop-color:#1e88e5"/>
-           <stop offset="100%" style="stop-color:#1565c0"/>
-         </linearGradient>
-         <linearGradient id="soleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-           <stop offset="0%" style="stop-color:#1e88e5"/>
-           <stop offset="100%" style="stop-color:#0d47a1"/>
-         </linearGradient>
-         <filter id="glow">
-           <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-           <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-         </filter>
-       </defs>
-       <ellipse cx="300" cy="355" rx="220" ry="30" fill="rgba(21,101,192,0.15)" filter="url(#glow)"/>
-       <path d="M 60 320 Q 80 340 300 348 Q 520 340 540 320 L 520 300 Q 300 315 80 300 Z" fill="url(#soleGrad)" stroke="#1565c0" stroke-width="1"/>
-       <path d="M 80 300 Q 300 316 520 300 L 510 270 Q 300 285 90 270 Z" fill="#1a3060" stroke="#1e88e5" stroke-width="1"/>
-       <path d="M 90 270 Q 300 285 510 270 L 505 258 Q 300 273 95 258 Z" fill="#f0f6ff" opacity="0.95"/>
-       <path d="M 95 258 Q 140 200 200 180 Q 280 155 380 158 Q 450 160 510 175 L 505 258 Q 300 273 95 258 Z" fill="url(#sneakerGrad)" stroke="#1e88e5" stroke-width="1.5"/>
-       <path d="M 95 258 Q 100 220 120 200 Q 150 185 180 182 Q 140 230 95 258" fill="#0d47a1" opacity="0.8"/>
-       <path d="M 170 245 Q 280 200 420 185 Q 480 183 505 190 Q 480 198 420 202 Q 290 218 175 258 Z" fill="#fff" opacity="0.25"/>
-       <rect x="230" y="178" width="180" height="72" rx="4" fill="#1565c0" opacity="0.5"/>
-       <line x1="245" y1="190" x2="395" y2="186" stroke="#e3f2fd" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-       <line x1="245" y1="202" x2="393" y2="198" stroke="#e3f2fd" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-       <line x1="246" y1="214" x2="391" y2="210" stroke="#e3f2fd" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-       <line x1="247" y1="226" x2="389" y2="223" stroke="#e3f2fd" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-       <line x1="248" y1="238" x2="387" y2="236" stroke="#e3f2fd" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-       <path d="M 480 175 Q 510 172 530 195 Q 535 220 520 240 L 505 240" fill="#0d47a1" stroke="#1e88e5" stroke-width="1.5"/>
-       <text x="500" y="210" text-anchor="middle" fill="#e3f2fd" font-size="9" font-family="Bebas Neue, sans-serif" letter-spacing="1" opacity="0.9">C2B</text>
-       <path d="M 228 178 Q 230 155 240 145 Q 270 138 300 137 Q 330 138 360 145 Q 370 155 372 178" fill="#1565c0" stroke="#1e88e5" stroke-width="1"/>
-       <text x="300" y="165" text-anchor="middle" fill="#e3f2fd" font-size="14" font-family="Bebas Neue, sans-serif" letter-spacing="3" opacity="0.9">C2B HUB</text>
-       <circle cx="130" cy="330" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="160" cy="335" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="190" cy="337" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="220" cy="338" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="280" cy="340" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="340" cy="340" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="400" cy="338" r="4" fill="#0d47a1" opacity="0.5"/>
-       <circle cx="450" cy="334" r="4" fill="#0d47a1" opacity="0.5"/>
-     </svg>
-   </div>
+ <div class="hero-stat stat1 reveal">
+   <div class="hero-stat-num">5K+</div>
+   <div class="hero-stat-label">Happy Clients</div>
  </div>
 
- <div class="hero-stat stat1 reveal"><div class="hero-stat-num">5K+</div><div class="hero-stat-label">Happy Clients</div></div>
- <div class="hero-stat stat2 reveal"><div class="hero-stat-num">200+</div><div class="hero-stat-label">Products</div></div>
- <div class="hero-badge"><div class="hero-badge-icon">🔥</div><div class="hero-badge-text"><strong>Trending Now</strong>Air Force Collection</div></div>
- <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
+ <div class="hero-stat stat2 reveal">
+   <div class="hero-stat-num">200+</div>
+   <div class="hero-stat-label">Products</div>
+ </div>
 </section>
 
 <div class="flash-sale-banner">
@@ -898,8 +1724,18 @@
 
 <div class="brand-strip">
  <div class="brand-scroll">
-   <span class="brand-item">Nike</span><span class="brand-item">Adidas</span><span class="brand-item">Jordan</span><span class="brand-item">New Balance</span><span class="brand-item">Puma</span><span class="brand-item">Versace</span><span class="brand-item">Gucci</span><span class="brand-item">Dior</span><span class="brand-item">OFF-WHITE</span><span class="brand-item">Supreme</span><span class="brand-item">A Bathing Ape</span><span class="brand-item">Stüssy</span>
-   <span class="brand-item">Nike</span><span class="brand-item">Adidas</span><span class="brand-item">Jordan</span><span class="brand-item">New Balance</span><span class="brand-item">Puma</span><span class="brand-item">Versace</span><span class="brand-item">Gucci</span><span class="brand-item">Dior</span><span class="brand-item">OFF-WHITE</span><span class="brand-item">Supreme</span><span class="brand-item">A Bathing Ape</span><span class="brand-item">Stüssy</span>
+   <span class="brand-item">Nike</span>
+   <span class="brand-item">Adidas</span>
+   <span class="brand-item">Jordan</span>
+   <span class="brand-item">New Balance</span>
+   <span class="brand-item">Puma</span>
+   <span class="brand-item">Gucci</span>
+   <span class="brand-item">Dior</span>
+   <span class="brand-item">Supreme</span>
+   <span class="brand-item">Nike</span>
+   <span class="brand-item">Adidas</span>
+   <span class="brand-item">Jordan</span>
+   <span class="brand-item">New Balance</span>
  </div>
 </div>
 
@@ -907,6 +1743,7 @@
  <div class="section-tag">Browse</div>
  <h2 class="section-title">SHOP BY <em>CATEGORY</em></h2>
  <p class="section-sub">Find your vibe across our curated collections.</p>
+
  <div class="categories-grid reveal">
    <div class="cat-card"><span class="cat-icon">👟</span><span class="cat-name">Sneakers</span><span class="cat-count">48 items</span></div>
    <div class="cat-card"><span class="cat-icon">🌸</span><span class="cat-name">Perfumes</span><span class="cat-count">32 items</span></div>
@@ -924,6 +1761,7 @@
      <div class="section-tag">Featured</div>
      <h2 class="section-title">NEW <em>DROPS</em></h2>
    </div>
+
    <div class="products-filter">
      <button class="filter-btn active">All</button>
      <button class="filter-btn">Sneakers</button>
@@ -931,39 +1769,113 @@
      <button class="filter-btn">Watches</button>
    </div>
  </div>
+
  <div class="products-grid">
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">👟</span><span class="product-tag">-35%</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">Nike</div><div class="product-name">Air Force 1 Shadow White</div><div class="product-variant">White / Silver · Sizes 38-45</div><div class="product-pricing"><span class="price-current">৳8,500</span><span class="price-old">৳13,000</span><span class="price-off">35% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/adidas-f50-red-white.jpg" alt="Adidas F50 Red White">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Adidas F50</div>
+       <div class="product-name">Red & White</div>
+       <div class="product-variant">Football Boot</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">🌸</span><span class="product-tag new">New</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">Dior</div><div class="product-name">Miss Dior Blooming Bouquet</div><div class="product-variant">100ml · Eau de Toilette</div><div class="product-pricing"><span class="price-current">৳6,200</span><span class="price-old">৳8,000</span><span class="price-off">22% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/adidas-f50-white-blue.jpg" alt="Adidas F50 White Blue">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Adidas F50</div>
+       <div class="product-name">White & Blue</div>
+       <div class="product-variant">Football Boot</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">👜</span><span class="product-tag limited">Limited</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">Gucci</div><div class="product-name">GG Marmont Shoulder Bag</div><div class="product-variant">Black Leather · Gold Hardware</div><div class="product-pricing"><span class="price-current">৳24,000</span><span class="price-old">৳32,000</span><span class="price-off">25% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/adidas-f50-black-special.jpg" alt="Adidas F50 Black Special">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Adidas F50</div>
+       <div class="product-name">Black Special Edition</div>
+       <div class="product-variant">Football Boot</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">⌚</span><span class="product-tag">-20%</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">Casio</div><div class="product-name">G-Shock DW-6900 Black</div><div class="product-variant">Resin Band · Auto-Illuminator</div><div class="product-pricing"><span class="price-current">৳4,800</span><span class="price-old">৳6,000</span><span class="price-off">20% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/nike-af1-white-supreme.jpg" alt="Nike Air Force 1 White Supreme">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Nike Air Force 1</div>
+       <div class="product-name">Triple White Supreme</div>
+       <div class="product-variant">Sneaker</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">🧥</span><span class="product-tag new">New</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">C2B HUB</div><div class="product-name">Oversized Street Hoodie</div><div class="product-variant">Jet Black · S/M/L/XL/XXL</div><div class="product-pricing"><span class="price-current">৳2,200</span><span class="price-old">৳2,800</span><span class="price-off">21% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/adidas-samba-white-black.jpg" alt="Adidas Samba White Black">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Adidas Samba</div>
+       <div class="product-name">White & Black</div>
+       <div class="product-variant">Sneaker</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">🧢</span><span class="product-tag">-15%</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">New Era</div><div class="product-name">59Fifty Fitted All Black</div><div class="product-variant">Wool Blend · 7 1/8 – 7 5/8</div><div class="product-pricing"><span class="price-current">৳1,700</span><span class="price-old">৳2,000</span><span class="price-off">15% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/onitsuka-yellow-black.jpg" alt="Onitsuka Tiger Yellow Black">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Onitsuka Tiger</div>
+       <div class="product-name">Yellow & Black</div>
+       <div class="product-variant">Sneaker</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">💍</span><span class="product-tag limited">Limited</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">C2B HUB</div><div class="product-name">Gold Chain Statement Set</div><div class="product-variant">18K Gold Plated · Necklace + Bracelet</div><div class="product-pricing"><span class="price-current">৳3,500</span><span class="price-old">৳5,000</span><span class="price-off">30% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/adidas-campus-green-white.jpg" alt="Adidas Campus Green White">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Adidas Campus</div>
+       <div class="product-name">Green & White</div>
+       <div class="product-variant">Sneaker</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
    <div class="product-card reveal">
-     <div class="product-img-wrap"><span class="product-emoji">👟</span><span class="product-tag">-40%</span><div class="product-actions"><div class="product-action-btn"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div></div>
-     <div class="product-info"><div class="product-brand">Adidas</div><div class="product-name">Yeezy 350 V2 Black</div><div class="product-variant">Core Black / Red · UK 7-12</div><div class="product-pricing"><span class="price-current">৳12,000</span><span class="price-old">৳20,000</span><span class="price-off">40% OFF</span></div><button class="add-cart-btn">Add to Cart</button></div>
+     <div class="product-img-wrap">
+       <img src="images/sandal-pink-flower.jpg" alt="Pink Flower Sandal">
+       <span class="product-tag new">New</span>
+     </div>
+     <div class="product-info">
+       <div class="product-brand">Flower Heel Sandal</div>
+       <div class="product-name">Pink Flower</div>
+       <div class="product-variant">Sandal</div>
+       <button class="add-cart-btn">Add to Cart</button>
+     </div>
    </div>
+
  </div>
 </section>
 
@@ -971,44 +1883,73 @@
  <div class="section-tag">Hottest Picks</div>
  <h2 class="section-title">TRENDING <em>NOW</em></h2>
  <p class="section-sub">Viral pieces flying off our shelves every day.</p>
+
  <div class="trending-grid">
    <div class="trend-card featured reveal">
-     <div class="trend-img" style="min-height:360px;font-size:150px;">👟</div>
-     <div class="trend-info"><div class="product-brand" style="margin-bottom:8px;">🔥 #1 Bestseller</div><div class="trend-name">Jordan 1 Retro High OG Chicago</div><div class="trend-desc">The most iconic sneaker ever made. Classic red, black, and white colorway.</div><div class="trend-price">৳18,500</div></div>
+     <div class="trend-img">👟</div>
+     <div class="trend-info">
+       <div class="product-brand">🔥 #1 Bestseller</div>
+       <div class="trend-name">Jordan 1 Retro High OG Chicago</div>
+       <div class="trend-desc">The most iconic sneaker ever made.</div>
+       <div class="trend-price">৳18,500</div>
+     </div>
    </div>
-   <div class="trend-card reveal"><div class="trend-img" style="min-height:180px;font-size:80px;">🌸</div><div class="trend-info"><div class="trend-name">Sauvage Elixir</div><div class="trend-desc">Dior's most seductive fragrance</div><div class="trend-price">৳9,200</div></div></div>
-   <div class="trend-card reveal"><div class="trend-img" style="min-height:180px;font-size:80px;">⌚</div><div class="trend-info"><div class="trend-name">AP Royal Oak Black</div><div class="trend-desc">Swiss precision, timeless drip</div><div class="trend-price">৳85,000</div></div></div>
-   <div class="trend-card reveal"><div class="trend-img" style="min-height:160px;font-size:80px;">🧥</div><div class="trend-info"><div class="trend-name">C2B Puffer Jacket</div><div class="trend-desc">Winter streetwear essential</div><div class="trend-price">৳5,500</div></div></div>
-   <div class="trend-card reveal"><div class="trend-img" style="min-height:160px;font-size:80px;">👜</div><div class="trend-info"><div class="trend-name">Mini Crossbody Chrome</div><div class="trend-desc">Silver aesthetic, viral silhouette</div><div class="trend-price">৳7,800</div></div></div>
+
+   <div class="trend-card reveal"><div class="trend-img">🌸</div><div class="trend-info"><div class="trend-name">Sauvage Elixir</div><div class="trend-price">৳9,200</div></div></div>
+   <div class="trend-card reveal"><div class="trend-img">⌚</div><div class="trend-info"><div class="trend-name">AP Royal Oak Black</div><div class="trend-price">৳85,000</div></div></div>
+   <div class="trend-card reveal"><div class="trend-img">🧥</div><div class="trend-info"><div class="trend-name">C2B Puffer Jacket</div><div class="trend-price">৳5,500</div></div></div>
+   <div class="trend-card reveal"><div class="trend-img">👜</div><div class="trend-info"><div class="trend-name">Mini Crossbody Chrome</div><div class="trend-price">৳7,800</div></div></div>
  </div>
 </section>
 
 <section id="gallery" class="insta-section">
  <div class="insta-header reveal">
-   <div><div class="section-tag">Gallery</div><h2 class="section-title">C2B HUB <em>VIBES</em></h2></div>
-   <a href="https://instagram.com/c2bhub" class="insta-handle"><div class="insta-handle-icon">📸</div>@c2bhub</a>
+   <div>
+     <div class="section-tag">Gallery</div>
+     <h2 class="section-title">C2B HUB <em>VIBES</em></h2>
+   </div>
+   <a href="https://instagram.com/c2bhub" class="insta-handle">
+     <div class="insta-handle-icon">📸</div>
+     @c2bhub
+   </a>
  </div>
+
  <div class="insta-grid reveal">
-   <div class="insta-item span2">👟<div class="insta-overlay"><span>Sneaker Drop</span><span>150 ❤</span></div></div>
-   <div class="insta-item">🧥<div class="insta-overlay"><span>Drip Check</span><span>89 ❤</span></div></div>
-   <div class="insta-item">⌚<div class="insta-overlay"><span>Flex</span><span>211 ❤</span></div></div>
-   <div class="insta-item">🌸<div class="insta-overlay"><span>Scentfit</span><span>97 ❤</span></div></div>
-   <div class="insta-item">🧢<div class="insta-overlay"><span>Cap Season</span><span>143 ❤</span></div></div>
-   <div class="insta-item">💍<div class="insta-overlay"><span>Bling</span><span>205 ❤</span></div></div>
-   <div class="insta-item span2">👜<div class="insta-overlay"><span>Bag Fit</span><span>168 ❤</span></div></div>
-   <div class="insta-item">👟<div class="insta-overlay"><span>Heat</span><span>299 ❤</span></div></div>
-   <div class="insta-item">🧥<div class="insta-overlay"><span>Lookbook</span><span>176 ❤</span></div></div>
-   <div class="insta-item">🌸<div class="insta-overlay"><span>OOTD</span><span>122 ❤</span></div></div>
+   <div class="insta-item span2">👟</div>
+   <div class="insta-item">🧥</div>
+   <div class="insta-item">⌚</div>
+   <div class="insta-item">🌸</div>
+   <div class="insta-item">🧢</div>
+   <div class="insta-item">💍</div>
+   <div class="insta-item span2">👜</div>
+   <div class="insta-item">👟</div>
+   <div class="insta-item">🧥</div>
+   <div class="insta-item">🌸</div>
  </div>
 </section>
 
 <section id="reviews" class="reviews-section">
  <div class="section-tag">Testimonials</div>
  <h2 class="section-title">WHAT THEY <em>SAY</em></h2>
+
  <div class="reviews-grid">
-   <div class="review-card reveal"><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="review-text">"Ordered the Air Force 1s and they arrived in 2 days, perfectly packed. C2B HUB is the real deal!"</div><div class="review-user"><div class="review-avatar">😎</div><div><div class="review-name">Rafin Islam <span class="review-verified">✓</span></div><div class="review-meta">Dhaka · Sneaker Collector</div></div></div></div>
-   <div class="review-card reveal"><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="review-text">"Got the Dior perfume as a gift and my friends went crazy for it. Best fashion page in Bangladesh!"</div><div class="review-user"><div class="review-avatar">👩</div><div><div class="review-name">Nusrat Jahan <span class="review-verified">✓</span></div><div class="review-meta">Chittagong · Fashion Blogger</div></div></div></div>
-   <div class="review-card reveal"><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="review-text">"The Gucci bag I ordered is stunning. Payment was smooth and product exceeded my expectations!"</div><div class="review-user"><div class="review-avatar">🕶️</div><div><div class="review-name">Arif Hossain <span class="review-verified">✓</span></div><div class="review-meta">Sylhet · Style Enthusiast</div></div></div></div>
+   <div class="review-card reveal">
+     <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+     <div class="review-text">"Ordered the Air Force 1s and they arrived perfectly packed. C2B HUB is the real deal!"</div>
+     <div class="review-user"><div class="review-avatar">😎</div><div><div class="review-name">Rafin Islam ✓</div><div class="review-meta">Dhaka · Sneaker Collector</div></div></div>
+   </div>
+
+   <div class="review-card reveal">
+     <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+     <div class="review-text">"Got the perfume as a gift and the packaging was luxury level."</div>
+     <div class="review-user"><div class="review-avatar">👩</div><div><div class="review-name">Nusrat Jahan ✓</div><div class="review-meta">Chittagong · Fashion Blogger</div></div></div>
+   </div>
+
+   <div class="review-card reveal">
+     <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+     <div class="review-text">"Ordered through WhatsApp, payment was smooth, and the product exceeded expectations."</div>
+     <div class="review-user"><div class="review-avatar">🕶️</div><div><div class="review-name">Arif Hossain ✓</div><div class="review-meta">Sylhet · Style Enthusiast</div></div></div>
+   </div>
  </div>
 </section>
 
@@ -1017,40 +1958,34 @@
    <div class="reveal">
      <div class="section-tag">Get In Touch</div>
      <h2 class="contact-big-text">ORDER IN <em>SECONDS</em></h2>
-     <p class="contact-desc">Ready to order? Hit us up on WhatsApp or add us on WeChat. We source any product, any quantity, directly from China.</p>
-     <div class="contact-info-row">
-       <div><div class="product-brand" style="margin-bottom:4px;">Location</div><div style="font-size:14px;color:var(--white2);">China 🇨🇳</div></div>
-       <div><div class="product-brand" style="margin-bottom:4px;">Hours</div><div style="font-size:14px;color:var(--white2);">9 AM – 11 PM Daily</div></div>
-       <div><div class="product-brand" style="margin-bottom:4px;">Response</div><div style="font-size:14px;color:var(--white2);">Within 30 minutes</div></div>
-     </div>
+     <p class="contact-desc">Ready to order? Hit us up on WhatsApp or add us on WeChat.</p>
+
      <div class="wechat-card">
        <div class="wechat-icon">💬</div>
-       <div class="wechat-info">
+       <div>
          <div class="wechat-label">WeChat ID</div>
          <div class="wechat-id">aftab_19851957535</div>
          <div class="wechat-sub">Search this ID on WeChat to connect & order</div>
        </div>
      </div>
    </div>
+
    <div class="social-buttons reveal">
-     <a href="https://wa.me/8619851957535" class="social-btn" target="_blank" rel="noopener">
-       <div class="social-icon-circle" style="background:rgba(37,211,102,0.1);border-color:#25d366;">📱</div>
-       <div class="social-btn-text"><span class="social-btn-name">WhatsApp Order</span><span class="social-btn-sub">+86 19851957535 · Tap to chat now</span></div>
+     <a href="https://wa.me/8619851957535" class="social-btn" target="_blank">
+       <div class="social-icon-circle">📱</div>
+       <div class="social-btn-text">
+         <span class="social-btn-name">WhatsApp Order</span>
+         <span class="social-btn-sub">+86 19851957535 · Tap to chat now</span>
+       </div>
        <span class="social-arrow">→</span>
      </a>
-     <a href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText('aftab_19851957535');alert('WeChat ID copied! Search on WeChat: aftab_19851957535');return false;" class="social-btn" style="border-color:rgba(7,193,96,0.3);">
-       <div class="social-icon-circle" style="background:rgba(7,193,96,0.1);border-color:#07c160;">💬</div>
-       <div class="social-btn-text"><span class="social-btn-name">WeChat: aftab_19851957535</span><span class="social-btn-sub">Tap to copy WeChat ID</span></div>
-       <span class="social-arrow">→</span>
-     </a>
-     <a href="https://instagram.com/c2bhub" class="social-btn" target="_blank" rel="noopener">
+
+     <a href="https://instagram.com/c2bhub" class="social-btn" target="_blank">
        <div class="social-icon-circle">📸</div>
-       <div class="social-btn-text"><span class="social-btn-name">@c2bhub on Instagram</span><span class="social-btn-sub">Follow for daily drops</span></div>
-       <span class="social-arrow">→</span>
-     </a>
-     <a href="https://facebook.com/c2bhub" class="social-btn" target="_blank" rel="noopener">
-       <div class="social-icon-circle">👥</div>
-       <div class="social-btn-text"><span class="social-btn-name">C2B HUB on Facebook</span><span class="social-btn-sub">5,000+ community members</span></div>
+       <div class="social-btn-text">
+         <span class="social-btn-name">@c2bhub on Instagram</span>
+         <span class="social-btn-sub">Follow for daily drops</span>
+       </div>
        <span class="social-arrow">→</span>
      </a>
    </div>
@@ -1064,96 +1999,138 @@
      <div class="footer-tagline">From China to You · Any Product, Any Quantity, Anytime!</div>
      <p class="footer-desc">Your direct sourcing partner from China. Premium streetwear, sneakers, luxury perfumes, and lifestyle accessories.</p>
    </div>
+
    <div>
      <div class="footer-heading">Shop</div>
      <ul class="footer-links">
-       <li><a href="#">Sneakers</a></li><li><a href="#">Perfumes</a></li><li><a href="#">Bags</a></li><li><a href="#">Watches</a></li><li><a href="#">Hoodies</a></li><li><a href="#">Accessories</a></li>
+       <li><a href="#">Sneakers</a></li>
+       <li><a href="#">Perfumes</a></li>
+       <li><a href="#">Bags</a></li>
+       <li><a href="#">Watches</a></li>
      </ul>
    </div>
+
    <div>
      <div class="footer-heading">Info</div>
      <ul class="footer-links">
-       <li><a href="#">About C2B HUB</a></li><li><a href="#">Order Guide</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">FAQ</a></li>
+       <li><a href="#">About C2B HUB</a></li>
+       <li><a href="#">Order Guide</a></li>
+       <li><a href="#">Return Policy</a></li>
      </ul>
    </div>
+
    <div>
      <div class="footer-heading">Connect</div>
      <ul class="footer-links">
-       <li><a href="https://wa.me/8619851957535" target="_blank">WhatsApp: +86 19851957535</a></li>
-       <li><a href="#">WeChat: aftab_19851957535</a></li>
+       <li><a href="https://wa.me/8619851957535" target="_blank">WhatsApp</a></li>
+       <li><a href="#">WeChat</a></li>
        <li><a href="https://instagram.com/c2bhub" target="_blank">Instagram</a></li>
-       <li><a href="https://facebook.com/c2bhub" target="_blank">Facebook</a></li>
      </ul>
    </div>
  </div>
+
  <div class="footer-bottom">
-   <div class="footer-copy">© 2025 <span>C2B HUB</span> · All rights reserved · From China 🇨🇳 with ❤️</div>
+   <div class="footer-copy">© 2025 <span>C2B HUB</span> · All rights reserved</div>
    <div class="footer-socials">
-     <a class="footer-social" href="https://instagram.com/c2bhub" target="_blank">📸</a>
-     <a class="footer-social" href="https://facebook.com/c2bhub" target="_blank">👥</a>
-     <a class="footer-social" href="https://wa.me/8619851957535" target="_blank">📱</a>
+     <a class="footer-social" href="#">📸</a>
+     <a class="footer-social" href="#">👥</a>
+     <a class="footer-social" href="#">📱</a>
    </div>
  </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/8619851957535" target="_blank" rel="noopener" title="Order on WhatsApp">📱</a>
+<a class="whatsapp-float" href="https://wa.me/8619851957535" target="_blank">📱</a>
 
 <script>
  const cursor = document.getElementById('cursor');
  const ring = document.getElementById('cursorRing');
- let mx=0,my=0,rx=0,ry=0;
- document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
- function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
- animateRing();
- document.querySelectorAll('a,button,.cat-card,.product-card,.nav-icon,.filter-btn,.insta-item').forEach(el=>{
-   el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.opacity='0.3';});
-   el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='40px';ring.style.height='40px';ring.style.opacity='0.5';});
+
+ let mx = 0, my = 0, rx = 0, ry = 0;
+
+ document.addEventListener('mousemove', e => {
+   mx = e.clientX;
+   my = e.clientY;
+   cursor.style.left = mx + 'px';
+   cursor.style.top = my + 'px';
  });
 
- const navbar=document.getElementById('navbar');
- window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);});
-
- function updateCountdown(){
-   const now=new Date(),target=new Date(now);
-   target.setHours(23,59,59,999);
-   let diff=Math.max(0,target-now);
-   const h=Math.floor(diff/3600000);diff%=3600000;
-   const m=Math.floor(diff/60000);diff%=60000;
-   const s=Math.floor(diff/1000);
-   document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-   document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-   document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+ function animateRing() {
+   rx += (mx - rx) * 0.12;
+   ry += (my - ry) * 0.12;
+   ring.style.left = rx + 'px';
+   ring.style.top = ry + 'px';
+   requestAnimationFrame(animateRing);
  }
- updateCountdown();setInterval(updateCountdown,1000);
 
- const observer=new IntersectionObserver((entries)=>{
-   entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*60);observer.unobserve(entry.target);}});
- },{threshold:0.08});
- document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+ animateRing();
 
- document.querySelectorAll('.filter-btn').forEach(btn=>{
-   btn.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');});
+ const navbar = document.getElementById('navbar');
+ window.addEventListener('scroll', () => {
+   navbar.classList.toggle('scrolled', window.scrollY > 60);
  });
 
- const cartBadge=document.querySelector('.cart-badge');
- let cartCount=3;
- document.querySelectorAll('.add-cart-btn').forEach(btn=>{
-   btn.addEventListener('click',function(){
-     cartCount++;cartBadge.textContent=cartCount;
-     this.textContent='✓ Added!';this.style.background='var(--accent)';this.style.borderColor='var(--accent)';this.style.color='#fff';
-     setTimeout(()=>{this.textContent='Add to Cart';this.style.background='';this.style.borderColor='';this.style.color='';},1800);
+ function updateCountdown() {
+   const now = new Date();
+   const target = new Date(now);
+   target.setHours(23, 59, 59, 999);
+   let diff = Math.max(0, target - now);
+   const h = Math.floor(diff / 3600000); diff %= 3600000;
+   const m = Math.floor(diff / 60000); diff %= 60000;
+   const s = Math.floor(diff / 1000);
+
+   document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+   document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+   document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+ }
+
+ updateCountdown();
+ setInterval(updateCountdown, 1000);
+
+ const observer = new IntersectionObserver((entries) => {
+   entries.forEach((entry) => {
+     if (entry.isIntersecting) {
+       entry.target.classList.add('visible');
+       observer.unobserve(entry.target);
+     }
+   });
+ }, { threshold: 0.08 });
+
+ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+ const cartBadge = document.querySelector('.cart-badge');
+ let cartCount = 3;
+
+ document.querySelectorAll('.add-cart-btn').forEach(btn => {
+   btn.addEventListener('click', function() {
+     cartCount++;
+     cartBadge.textContent = cartCount;
+     this.textContent = '✓ Added!';
+     setTimeout(() => {
+       this.textContent = 'Add to Cart';
+     }, 1800);
    });
  });
 
- const hamburger=document.getElementById('hamburger');
- hamburger.addEventListener('click',()=>{
-   const links=document.querySelector('.nav-links');
-   if(links){
-     const isOpen=links.style.display==='flex';
-     links.style.display=isOpen?'none':'flex';
-     if(!isOpen){links.style.flexDirection='column';links.style.position='fixed';links.style.top='70px';links.style.left='0';links.style.right='0';links.style.background='rgba(255,255,255,0.97)';links.style.padding='30px 5%';links.style.gap='24px';links.style.borderBottom='1px solid var(--border)';links.style.backdropFilter='blur(20px)';links.style.zIndex='999';}
+ const hamburger = document.getElementById('hamburger');
+ hamburger.addEventListener('click', () => {
+   const links = document.querySelector('.nav-links');
+   const isOpen = links.style.display === 'flex';
+   links.style.display = isOpen ? 'none' : 'flex';
+
+   if (!isOpen) {
+     links.style.flexDirection = 'column';
+     links.style.position = 'fixed';
+     links.style.top = '70px';
+     links.style.left = '0';
+     links.style.right = '0';
+     links.style.background = 'rgba(255,255,255,0.97)';
+     links.style.padding = '30px 5%';
+     links.style.gap = '24px';
+     links.style.borderBottom = '1px solid var(--border)';
+     links.style.zIndex = '999';
    }
  });
 </script>
+
 </body>
 </html>
